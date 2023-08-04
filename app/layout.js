@@ -1,16 +1,34 @@
 "use client";
 import "./globals.css";
 import { Inter, Libre_Baskerville } from "next/font/google";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
+import Button from "./components/Button";
 
 const variants = {
   open: { opacity: 1, x: 0 },
   closed: { opacity: 0, x: "-100%" },
 };
 
-const inter = Inter({ subsets: ["latin"] });
+const menuContainer = {
+  hidden: { opacity: 0 },
+  show: {
+    opacity: 1,
+    transition: {
+      delayChildren: 0.5,
+      staggerDirection: -1,
+      when: "beforeChildren",
+    },
+  },
+};
+
+// const itemInMenu = {
+//   hidden: { opacity: 0 },
+//   show: { opacity: 1 },
+// };
+
+// const inter = Inter({ subsets: ["latin"] });
 const libreBaskerville = Libre_Baskerville({
   subsets: ["latin"],
   weight: ["400", "700"],
@@ -72,14 +90,24 @@ export default function RootLayout({ children }) {
   const [activeMenu, setActiveMenu] = useState();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
+  useEffect(() => {
+    if (isMenuOpen) {
+      setIsMenuOpen(true);
+    }
+  }, [isMenuOpen]);
+
   return (
     <html lang="en">
       <body className={`${libreBaskerville.className}`}>
-        <main className="appColor min-h-screen">
+        <main
+          className={`${
+            isMenuOpen ? "bg-bgSecondary text-white" : "appColor"
+          } min-h-screen`}
+        >
           <div className="max-w-[1440px] mx-auto sm:px-5 px-3">
             {/* Header */}
-            <header className="py-5">
-              <div className="flex justify-between items-center">
+            <header className="py-5 mb-20">
+              <div className="flex justify-between items-center z-40">
                 <Link href="/">
                   <p>JuGrants</p>
                 </Link>
@@ -104,15 +132,12 @@ export default function RootLayout({ children }) {
                   </nav>
                   {/* Desktop Menu */}
                   <div className="flex md:block items-center gap-5">
-                    <Link href="/grants-application">
-                      <button className="bg-bgButton hover:bg-bgButtonHover font-bold p-4 rounded-xl whitespace-nowrap">
-                        Apply{" "}
-                        <span className="md:inline-block hidden">
-                          {" "}
-                          for grant
-                        </span>
-                      </button>
-                    </Link>
+                    <Button
+                      buttonBgColor="bg-bgButton"
+                      buttonLocation="/grants-application"
+                      buttonName="Apply"
+                      buttonNameSpan="for grant"
+                    />
                     <p
                       className="cursor-pointer md:hidden block"
                       onClick={() => setIsMenuOpen((prev) => !prev)}
@@ -121,21 +146,41 @@ export default function RootLayout({ children }) {
                     </p>
                   </div>
                   {/* Mobile Navigation */}
-                  <motion.div
-                    animate={isMenuOpen ? "open" : "closed"}
-                    variants={variants}
-                    className={` z-40 absolute bg-slate-900 w-full left-0 top-24 h-[88%] flex justify-center items-center md:hidden `}
-                  >
-                    <nav className="transition ease-in-out delay-100 duration-300">
-                      <ul className="text-3xl text-center flex flex-col gap-14">
-                        {headerMenu.map((menu, index) => (
-                          <li onClick={() => setIsMenuOpen(false)} key={index}>
-                            {menu.title}
-                          </li>
-                        ))}
-                      </ul>
-                    </nav>
-                  </motion.div>
+                  <AnimatePresence>
+                    {isMenuOpen && (
+                      <motion.div
+                        initial="closed"
+                        animate="open"
+                        exit="closed"
+                        variants={variants}
+                        className={`z-30 absolute bg-bgSecondary w-full left-0 top-24 h-full flex justify-center items-center md:hidden `}
+                      >
+                        <nav className="">
+                          <motion.ul
+                            variants={menuContainer}
+                            className="text-3xl text-center flex flex-col gap-14"
+                          >
+                            {headerMenu.map((menu, index) => (
+                              <motion.li
+                                initial={{ x: -500 }}
+                                animate={{ x: 0 }}
+                                exit={{ x: -500 }}
+                                transition={{
+                                  ease: "easeOut",
+                                  duration: 0.4,
+                                  delay: index * 0.2,
+                                }}
+                                onClick={() => setIsMenuOpen(false)}
+                                key={index}
+                              >
+                                {menu.title}
+                              </motion.li>
+                            ))}
+                          </motion.ul>
+                        </nav>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
                   {/* Mobile Navigation */}
                 </div>
               </div>
@@ -145,7 +190,7 @@ export default function RootLayout({ children }) {
             {children}
             {/* Main Content */}
             {/* Footer section */}
-            <footer>
+            <footer className="mt-20">
               <div className="sm:flex justify-between items-center">
                 <div className="flex justify-between gap-7">
                   <p className="text-red-600">logo</p>

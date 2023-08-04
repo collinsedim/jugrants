@@ -2,9 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
-.appColor,
-.menuMobile {
-  @apply bg-slate-900/95;
+.appColor {
+  @apply bg-slate-900/90;
 }
 
 body {
