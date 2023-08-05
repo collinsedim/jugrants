@@ -16,6 +16,11 @@ module.exports = {
         bgButton: "#6966ff",
         bgButtonHover: "#6c83ff",
       },
+      fontFamily: {
+        mono: ["var(--font-mono)"],
+        inter: ["var(--font-inter)"],
+        basker: ["var(--font-basker)"],
+      },
     },
   },
   plugins: [],

@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 .appColor {
-  @apply bg-slate-900/90;
+  @apply bg-slate-900/95;
 }
 
 body {

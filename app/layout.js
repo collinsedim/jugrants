@@ -3,8 +3,14 @@ import "./globals.css";
 import { Inter, Libre_Baskerville } from "next/font/google";
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { AnimatePresence, motion } from "framer-motion";
 import Button from "./components/Button";
+
+import open from "/public/assets/open.png";
+import close from "/public/assets/close.png";
+import discord from "/public/assets/discord-white.png";
+import twitter from "/public/assets/twitter-white.png";
 
 const variants = {
   open: { opacity: 1, x: 0 },
@@ -28,10 +34,12 @@ const menuContainer = {
 //   show: { opacity: 1 },
 // };
 
-// const inter = Inter({ subsets: ["latin"] });
+// Fonts
+
 const libreBaskerville = Libre_Baskerville({
   subsets: ["latin"],
   weight: ["400", "700"],
+  variable: "--font-basker",
 });
 
 export const metadata = {
@@ -77,14 +85,20 @@ const footerMenu = [
 
 const socialProfiles = [
   {
-    icon: "",
-    social: "X",
-  },
-  {
-    icon: "",
+    icon: discord,
     social: "Discord",
   },
+  {
+    icon: twitter,
+    social: "Twitter",
+  },
 ];
+
+const siteSocials = socialProfiles.map((profile, index) => (
+  <Link key={index} href="#">
+    <Image src={profile.icon} alt={profile.social} />
+  </Link>
+));
 
 export default function RootLayout({ children }) {
   const [activeMenu, setActiveMenu] = useState();
@@ -138,12 +152,12 @@ export default function RootLayout({ children }) {
                       buttonName="Apply"
                       buttonNameSpan="for grant"
                     />
-                    <p
+                    <Image
+                      src={isMenuOpen ? close : open}
+                      alt=""
                       className="cursor-pointer md:hidden block"
                       onClick={() => setIsMenuOpen((prev) => !prev)}
-                    >
-                      Menu
-                    </p>
+                    />
                   </div>
                   {/* Mobile Navigation */}
                   <AnimatePresence>
@@ -153,12 +167,12 @@ export default function RootLayout({ children }) {
                         animate="open"
                         exit="closed"
                         variants={variants}
-                        className={`z-30 absolute bg-bgSecondary w-full left-0 top-24 h-full flex justify-center items-center md:hidden `}
+                        className={`z-30 absolute bg-bgSecondary w-full left-0 top-24 h-[90%] flex flex-col gap-28 justify-center items-center md:hidden `}
                       >
                         <nav className="">
                           <motion.ul
                             variants={menuContainer}
-                            className="text-3xl text-center flex flex-col gap-14"
+                            className="text-3xl text-center flex flex-col gap-12"
                           >
                             {headerMenu.map((menu, index) => (
                               <motion.li
@@ -178,6 +192,7 @@ export default function RootLayout({ children }) {
                             ))}
                           </motion.ul>
                         </nav>
+                        <div className="flex gap-10">{siteSocials}</div>
                       </motion.div>
                     )}
                   </AnimatePresence>
@@ -187,7 +202,7 @@ export default function RootLayout({ children }) {
             </header>
             {/* Header */}
             {/* Main Content */}
-            {children}
+            <main className="mt-32">{children}</main>
             {/* Main Content */}
             {/* Footer section */}
             <footer className="mt-20">
@@ -203,11 +218,7 @@ export default function RootLayout({ children }) {
                   </nav>
                 </div>
 
-                <div className="flex gap-2">
-                  {socialProfiles.map((profile, index) => (
-                    <p key={index}>{profile.social}</p>
-                  ))}
-                </div>
+                <div className="flex gap-5">{siteSocials}</div>
               </div>
             </footer>
             {/* Footer section */}
