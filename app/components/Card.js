@@ -30,7 +30,7 @@ const grantBeneficiaries = [
 
 const Card = ({ title, description, startAmount, endAmount, category }) => {
   return (
-    <div className="w-[350px] bg-bgSecondary rounded-3xl ">
+    <div className=" bg-bgSecondary rounded-3xl ">
       <div className="h-[160px] bg-slate-900/95 rounded-3xl"></div>
       <div
         className={`text-left p-6 flex flex-col gap-3 text-sm ${inter.className}`}

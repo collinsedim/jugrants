@@ -3,7 +3,11 @@
 import Link from "next/link";
 import Image from "next/image";
 
-// import Swiper from "swiper";
+import { Swiper, SwiperSlide } from "swiper/react";
+// import "swiper/swiper-bundle.min.css";
+import "swiper/css/bundle";
+import SwiperCore, { Navigation } from "swiper";
+
 import { register } from "swiper/element/bundle";
 register();
 
@@ -17,9 +21,10 @@ import rightColor from "/public/assets/right.png";
 import downArrow from "/public/assets/down-arrow.png";
 
 // const swiper = new Swiper(".swiper", {
-//   spaceBetween: 280
+//   spaceBetween: 280,
 //   navigation: true,
-//   slidesPerView: 4,
+//   slidesPerView: 1,
+//   breakpointsBase: "window",
 // });
 
 const mono = Oxygen_Mono({
@@ -62,7 +67,7 @@ const projectsFunded = [
       "Lorem Ipsum is simply dummy text of the printing and typesetting     industry. Lorem Ipsum has been the industry's standard dummy text ever     since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.",
   },
   {
-    title: "Funding rates page",
+    title: "My friend rates",
     category: "Crowdfund",
     startAmount: "$5,000",
     endAmount: "$6,000",
@@ -70,7 +75,7 @@ const projectsFunded = [
       "Lorem Ipsum is simply dummy text of the printing and typesetting     industry. Lorem Ipsum has been the industry's standard dummy text ever     since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.",
   },
   {
-    title: "Lorem test eedsd",
+    title: "Your fire eedsd",
     category: "Crowdfund",
     startAmount: "$5,000",
     endAmount: "$6,000",
@@ -78,7 +83,7 @@ const projectsFunded = [
       "Lorem Ipsum is simply dummy text of the printing and typesetting     industry. Lorem Ipsum has been the industry's standard dummy text ever     since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.",
   },
   {
-    title: "Funding rates page",
+    title: "Grundonsn page",
     category: "Crowdfund",
     startAmount: "$5,000",
     endAmount: "$6,000",
@@ -86,7 +91,7 @@ const projectsFunded = [
       "Lorem Ipsum is simply dummy text of the printing and typesetting     industry. Lorem Ipsum has been the industry's standard dummy text ever     since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.",
   },
   {
-    title: "Lorem test eedsd",
+    title: "Guaridalonsdj eedsd",
     category: "Crowdfund",
     startAmount: "$5,000",
     endAmount: "$6,000",
@@ -158,15 +163,10 @@ export default function Home() {
               />
             </div>
           </div>
-          {/* <div className="mt-14">
-            {projectsFunded.map((project, index) => (
-              <Card key={index} {...project} />
-            ))}
-          </div> */}
         </div>
         {/* Projects section */}
       </div>
-      <swiper-container
+      {/* <swiper-container
         slides-per-view="4"
         css-mode="true"
         space-between="280"
@@ -181,7 +181,40 @@ export default function Home() {
             </swiper-slide>
           ))}
         </div>
-      </swiper-container>
+      </swiper-container> */}
+      <div className="mt-14">
+        <Swiper
+          slidesPerView="4"
+          spaceBetween="100"
+          navigation
+          pagination
+          cssMode
+          breakpoints={{
+            "@0.35": {
+              slidesPerView: 1,
+              spaceBetween: 20,
+            },
+            "@0.75": {
+              slidesPerView: 2,
+              spaceBetween: 20,
+            },
+            "@1.30": {
+              slidesPerView: 3,
+              spaceBetween: 30,
+            },
+            "@1.80": {
+              slidesPerView: 4,
+              spaceBetween: 20,
+            },
+          }}
+        >
+          {projectsFunded.map((project, index) => (
+            <SwiperSlide key={index}>
+              <Card {...project} />
+            </SwiperSlide>
+          ))}
+        </Swiper>
+      </div>
     </main>
   );
 }
