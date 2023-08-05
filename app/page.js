@@ -1,12 +1,26 @@
+"use client";
+// import React, { useRef, useState } from "react";
+import Link from "next/link";
 import Image from "next/image";
+
+// import Swiper from "swiper";
+import { register } from "swiper/element/bundle";
+register();
+
 import Button from "./components/Button";
+import Card from "./components/Card";
+
 import { Oxygen_Mono } from "next/font/google";
 
 import right from "/public/assets/right-white.png";
 import rightColor from "/public/assets/right.png";
 import downArrow from "/public/assets/down-arrow.png";
-import Link from "next/link";
-import Card from "./components/Card";
+
+// const swiper = new Swiper(".swiper", {
+//   spaceBetween: 280
+//   navigation: true,
+//   slidesPerView: 4,
+// });
 
 const mono = Oxygen_Mono({
   subsets: ["latin"],
@@ -39,6 +53,46 @@ const projectsFunded = [
     description:
       "Lorem Ipsum is simply dummy text of the printing and typesetting     industry. Lorem Ipsum has been the industry's standard dummy text ever     since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.",
   },
+  {
+    title: "Lorem test eedsd",
+    category: "Crowdfund",
+    startAmount: "$5,000",
+    endAmount: "$6,000",
+    description:
+      "Lorem Ipsum is simply dummy text of the printing and typesetting     industry. Lorem Ipsum has been the industry's standard dummy text ever     since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.",
+  },
+  {
+    title: "Funding rates page",
+    category: "Crowdfund",
+    startAmount: "$5,000",
+    endAmount: "$6,000",
+    description:
+      "Lorem Ipsum is simply dummy text of the printing and typesetting     industry. Lorem Ipsum has been the industry's standard dummy text ever     since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.",
+  },
+  {
+    title: "Lorem test eedsd",
+    category: "Crowdfund",
+    startAmount: "$5,000",
+    endAmount: "$6,000",
+    description:
+      "Lorem Ipsum is simply dummy text of the printing and typesetting     industry. Lorem Ipsum has been the industry's standard dummy text ever     since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.",
+  },
+  {
+    title: "Funding rates page",
+    category: "Crowdfund",
+    startAmount: "$5,000",
+    endAmount: "$6,000",
+    description:
+      "Lorem Ipsum is simply dummy text of the printing and typesetting     industry. Lorem Ipsum has been the industry's standard dummy text ever     since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.",
+  },
+  {
+    title: "Lorem test eedsd",
+    category: "Crowdfund",
+    startAmount: "$5,000",
+    endAmount: "$6,000",
+    description:
+      "Lorem Ipsum is simply dummy text of the printing and typesetting     industry. Lorem Ipsum has been the industry's standard dummy text ever     since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.",
+  },
 ];
 
 export default function Home() {
@@ -49,7 +103,7 @@ export default function Home() {
         <h1 className="sm:text-6xl text-4xl px-3 font-bold sm:leading-[75px] leading-[60px] tracking-wide">
           Powering the future of JuGrants through community grants
         </h1>
-        <div className=" flex justify-center sm:gap-7 gap-5 mb-16 mt-10">
+        <div className=" flex justify-center sm:gap-7 gap-5 mt-10 mb-32">
           <Button
             buttonBgColor="bg-bgSecondary"
             buttonLocation="/"
@@ -104,14 +158,30 @@ export default function Home() {
               />
             </div>
           </div>
-          <div className="mt-14">
+          {/* <div className="mt-14">
             {projectsFunded.map((project, index) => (
               <Card key={index} {...project} />
             ))}
-          </div>
+          </div> */}
         </div>
         {/* Projects section */}
       </div>
+      <swiper-container
+        slides-per-view="4"
+        css-mode="true"
+        space-between="280"
+        break-points-base="windows"
+      >
+        <div className="swiper mt-14 ml-14 flex gap-4">
+          {projectsFunded.map((project, index) => (
+            <swiper-slide key={index}>
+              <swiper-navigation>
+                <Card {...project} />
+              </swiper-navigation>
+            </swiper-slide>
+          ))}
+        </div>
+      </swiper-container>
     </main>
   );
 }
