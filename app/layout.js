@@ -5,6 +5,8 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { AnimatePresence, motion } from "framer-motion";
+import "pattern.css";
+
 import Button from "./components/Button";
 
 import open from "/public/assets/open.png";
@@ -112,10 +114,10 @@ export default function RootLayout({ children }) {
 
   return (
     <html lang="en">
-      <body className={`${libreBaskerville.className}`}>
+      <body className={`${libreBaskerville.className} pattern-grid-md`}>
         <main
           className={`${
-            isMenuOpen ? "bg-bgSecondary text-white" : "appColor"
+            isMenuOpen ? "bg-bgSecondary text-white" : "bg-slate-900/95"
           } min-h-screen`}
         >
           <div className="max-w-[1440px] mx-auto sm:px-5 px-3">

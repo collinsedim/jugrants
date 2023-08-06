@@ -1,4 +1,5 @@
 import { Inter, Oxygen_Mono } from "next/font/google";
+import { motion } from "framer-motion";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -30,7 +31,10 @@ const grantBeneficiaries = [
 
 const Card = ({ title, description, startAmount, endAmount, category }) => {
   return (
-    <div className=" bg-bgSecondary rounded-3xl ">
+    <motion.div
+      whileTap={{ scale: 0.9 }}
+      className="cursor-pointer bg-bgSecondary rounded-3xl "
+    >
       <div className="h-[160px] bg-slate-900/95 rounded-3xl"></div>
       <div
         className={`text-left p-6 flex flex-col gap-3 text-sm ${inter.className}`}
@@ -43,7 +47,10 @@ const Card = ({ title, description, startAmount, endAmount, category }) => {
         <p className="font-basker">{description}</p>
         <div className="flex">
           {grantBeneficiaries.map((beneficiary, index) => (
-            <p className="bg-textSecondary p-3 rounded-full group cursor-pointer border-2 border-slate-800 first-of-type:ml-0 -ml-4 hover:-ml-1">
+            <p
+              key={index}
+              className="bg-textSecondary p-3 rounded-full group cursor-pointer border-2 border-slate-800 first-of-type:ml-0 -ml-4 hover:z-10"
+            >
               {beneficiary.image}
               <span className="ml-2 group-hover:inline-block hidden text-slate-950 font-semibold">
                 {beneficiary.name}
@@ -52,7 +59,7 @@ const Card = ({ title, description, startAmount, endAmount, category }) => {
           ))}
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

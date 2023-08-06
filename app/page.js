@@ -1,12 +1,8 @@
 "use client";
-// import React, { useRef, useState } from "react";
-import Link from "next/link";
 import Image from "next/image";
-
 import { Swiper, SwiperSlide } from "swiper/react";
-// import "swiper/swiper-bundle.min.css";
 import "swiper/css/bundle";
-import SwiperCore, { Navigation } from "swiper";
+import "pattern.css";
 
 import { register } from "swiper/element/bundle";
 register();
@@ -19,13 +15,25 @@ import { Oxygen_Mono } from "next/font/google";
 import right from "/public/assets/right-white.png";
 import rightColor from "/public/assets/right.png";
 import downArrow from "/public/assets/down-arrow.png";
+import SectionIntro from "./components/SectionIntro";
 
-// const swiper = new Swiper(".swiper", {
-//   spaceBetween: 280,
-//   navigation: true,
-//   slidesPerView: 1,
-//   breakpointsBase: "window",
-// });
+const sectionDescription = {
+  description:
+    "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it",
+  heading: "Projects built with grants",
+  linkText: "View all funded projects",
+  linkImg: rightColor,
+  link: "/",
+};
+
+const whatsNew = {
+  description:
+    "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s",
+  heading: "What's new?",
+  linkText: "Read more on our blog",
+  linkImg: rightColor,
+  link: "/",
+};
 
 const mono = Oxygen_Mono({
   subsets: ["latin"],
@@ -137,51 +145,9 @@ export default function Home() {
           <div className="flex justify-center my-8">
             <Image src={downArrow} alt="" />
           </div>
-          <div className="text-center max-w-xl mx-auto">
-            <h2 className="text-3xl font-bold mb-3">
-              Projects built with grants
-            </h2>
-            <p className="text-sm">
-              Lorem Ipsum is simply dummy text of the printing and typesetting
-              industry. Lorem Ipsum has been the industry's standard dummy text
-              ever since the 1500s, when an unknown printer took a galley of
-              type and scrambled it
-            </p>
-            <div className="flex justify-center items-center mt-5 gap-2 group">
-              <Link
-                className="text-[#6966ff] hover:text-[#6966ff]/80 font-semibold"
-                href="#"
-              >
-                View all funded projects{" "}
-              </Link>
-              <Image
-                src={rightColor}
-                alt=""
-                width={16}
-                height={16}
-                className="group-hover:translate-x-1 duration-150"
-              />
-            </div>
-          </div>
+          <SectionIntro {...sectionDescription} />
         </div>
-        {/* Projects section */}
       </div>
-      {/* <swiper-container
-        slides-per-view="4"
-        css-mode="true"
-        space-between="280"
-        break-points-base="windows"
-      >
-        <div className="swiper mt-14 ml-14 flex gap-4">
-          {projectsFunded.map((project, index) => (
-            <swiper-slide key={index}>
-              <swiper-navigation>
-                <Card {...project} />
-              </swiper-navigation>
-            </swiper-slide>
-          ))}
-        </div>
-      </swiper-container> */}
       <div className="mt-14">
         <Swiper
           slidesPerView="4"
@@ -215,6 +181,44 @@ export default function Home() {
           ))}
         </Swiper>
       </div>
+      {/* Projects section */}
+      {/* What's New section */}
+      <div className="mt-36 mb-16">
+        <SectionIntro {...whatsNew} />
+        <div>
+          <div className="mt-14 bg-bgSecondary w-72 rounded-3xl overflow-hidden">
+            <div className="pattern-grid-md rounded-2xl">
+              <div className="bg-slate-900/90 border-[5px] border-bgButton rounded-2xl py-10">
+                <div className="flex flex-col items-center">
+                  <div className="relative">
+                    <p
+                      className={`${mono.className} text-textTertiary text-[10px]`}
+                    >
+                      Funding round
+                    </p>
+                    <h2 className="text-2xl font-bold">
+                      Round 9<br /> of approvals
+                    </h2>
+                    <div className="h-24 w-[195px] border-[1px] border-bgButton rounded-full absolute -top-1 -left-4 -rotate-12"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="p-5">
+              <div className="mb-16">
+                <p className={`${mono.className} text-textTertiary text-xs`}>
+                  Funding round
+                </p>
+                <h3 className="font-bold text-lg">Round 9 of approvals</h3>
+              </div>
+              <p className={`${mono.className} text-textTertiary text-xs`}>
+                January 1, 2023
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      {/* What's New section */}
     </main>
   );
 }
