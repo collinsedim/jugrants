@@ -1,21 +1,24 @@
 "use client";
+import { useState } from "react";
 import Image from "next/image";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css/bundle";
 import "pattern.css";
+import { Oxygen_Mono, Kalam } from "next/font/google";
 
 import { register } from "swiper/element/bundle";
 register();
 
 import Button from "./components/Button";
 import Card from "./components/Card";
-
-import { Oxygen_Mono } from "next/font/google";
+import SectionIntro from "./components/SectionIntro";
+import WhatsNewCard from "./components/WhatsNewCard";
+import Accordion from "./components/Accordion";
 
 import right from "/public/assets/right-white.png";
 import rightColor from "/public/assets/right.png";
 import downArrow from "/public/assets/down-arrow.png";
-import SectionIntro from "./components/SectionIntro";
+import rightArrowLg from "/public/assets/right-arrow-lg.png";
 
 const sectionDescription = {
   description:
@@ -26,7 +29,7 @@ const sectionDescription = {
   link: "/",
 };
 
-const whatsNew = {
+const whatsNewIntro = {
   description:
     "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s",
   heading: "What's new?",
@@ -35,11 +38,95 @@ const whatsNew = {
   link: "/",
 };
 
+const faqIntro = {
+  heading: "Frequently asked questions",
+  description:
+    "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy",
+};
+
+const appProcessIntro = {
+  heading: "Application process",
+  description:
+    "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy",
+};
+
+const whatsNewCardData = [
+  {
+    fRound: "Funding round",
+    title: "Round 9",
+    titleBreak: "of approvals",
+    titleFull: "Round 9 of approvals",
+    date: "August 6, 2023",
+  },
+  {
+    fRound: "Funding round",
+    title: "Round 8",
+    titleBreak: "of approvals",
+    titleFull: "Round 8 of approvals",
+    date: "August 2, 2023",
+  },
+];
+
+const faqData = [
+  {
+    title: "How do I apply?",
+    faq: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy",
+  },
+  {
+    title: "Can I apply as a U.S. based person/company?",
+    faq: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy",
+  },
+  {
+    title: "How will I be compensated?",
+    faq: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy",
+  },
+  {
+    title: "What type of project will qualify for a Grant?",
+    faq: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy",
+  },
+  {
+    title: "What is the application timeline? When can I expect to hear back?",
+    faq: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy",
+  },
+  {
+    title: "How can I increase my chances of getting funded?",
+    faq: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy",
+  },
+  {
+    title: "How often do you approve new Rounds of funding?",
+    faq: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy",
+  },
+];
+
+const appProcessData = [
+  {
+    title: "Apply",
+    description:
+      "Submit a complete application to the JuGrants team, including as many details as possible about the proposed idea and their background.",
+  },
+  {
+    title: "Interview",
+    description:
+      "If your application is selected, the JuGrants team will conduct 1-2 interviews to collect more information on the Applicant's background and the proposal.",
+  },
+  {
+    title: "Grant offer",
+    description:
+      "The JuGrants team will determine if the proposal fits into the grant program. A vesting schedule and timeline for product development reports will also be determined in the offer.",
+  },
+];
+
 const mono = Oxygen_Mono({
   subsets: ["latin"],
   weight: "400",
   display: "swap",
   variable: "--font-mono",
+});
+
+const kalam = Kalam({
+  subsets: ["latin"],
+  weight: ["400", "300", "700"],
+  display: "swap",
 });
 
 const grantsSummary = [
@@ -109,6 +196,7 @@ const projectsFunded = [
 ];
 
 export default function Home() {
+  const [expanded, setExpanded] = useState();
   return (
     <main className="">
       {/* Hero Section */}
@@ -184,41 +272,65 @@ export default function Home() {
       {/* Projects section */}
       {/* What's New section */}
       <div className="mt-36 mb-16">
-        <SectionIntro {...whatsNew} />
-        <div>
-          <div className="mt-14 bg-bgSecondary w-72 rounded-3xl overflow-hidden">
-            <div className="pattern-grid-md rounded-2xl">
-              <div className="bg-slate-900/90 border-[5px] border-bgButton rounded-2xl py-10">
-                <div className="flex flex-col items-center">
-                  <div className="relative">
-                    <p
-                      className={`${mono.className} text-textTertiary text-[10px]`}
-                    >
-                      Funding round
-                    </p>
-                    <h2 className="text-2xl font-bold">
-                      Round 9<br /> of approvals
-                    </h2>
-                    <div className="h-24 w-[195px] border-[1px] border-bgButton rounded-full absolute -top-1 -left-4 -rotate-12"></div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="p-5">
-              <div className="mb-16">
-                <p className={`${mono.className} text-textTertiary text-xs`}>
-                  Funding round
-                </p>
-                <h3 className="font-bold text-lg">Round 9 of approvals</h3>
-              </div>
-              <p className={`${mono.className} text-textTertiary text-xs`}>
-                January 1, 2023
-              </p>
-            </div>
+        <SectionIntro {...whatsNewIntro} />
+        <div className="flex justify-center">
+          <div className="mt-14 flex sm:flex-row flex-col gap-8 sm:px-0 px-6 max-w-[800px] ">
+            {whatsNewCardData.map((whatsNew, index) => (
+              <WhatsNewCard key={index} {...whatsNew} />
+            ))}
           </div>
         </div>
       </div>
       {/* What's New section */}
+      {/* Frequently asked questions section */}
+      <div className="mt-32 max-w-[800px] mx-auto">
+        <div className="mb-10">
+          <SectionIntro {...faqIntro} />
+        </div>
+        {faqData.map((faq, index) => (
+          <Accordion
+            key={index}
+            index={index}
+            expanded={expanded}
+            setExpanded={setExpanded}
+            {...faq}
+          />
+        ))}
+      </div>
+      {/* Frequently asked questions section */}
+      {/* Application Process */}
+      <div className="mt-36 max-w-[800px] mx-auto">
+        <div>
+          <SectionIntro {...appProcessIntro} />
+        </div>
+        {/* Application process card/steps */}
+        <div className="mt-8 grid grid-cols-1 sm:grid-cols-3 gap-8">
+          {appProcessData.map((process, index) => (
+            <div
+              key={`application-step-${index}`}
+              className={` bg-bgSecondary rounded-3xl px-5 py-7 first-of-type:-rotate-3 last-of-type:-rotate-3  last-of-type:-translate-y-4 even:translate-y-4 even:rotate-3 ${kalam.className}`}
+            >
+              <h3 className="text-3xl">{index + 1}</h3>
+              <div className="mt-10">
+                <h3 className="mb-4 text-2xl">{process.title}</h3>
+                <p>{process.description}</p>
+              </div>
+            </div>
+          ))}
+          <Image
+            className="absolute left-48 rotate-12"
+            src={rightArrowLg}
+            alt=""
+          />
+          <Image
+            className="absolute left-72 rotate-12"
+            src={rightArrowLg}
+            alt=""
+          />
+        </div>
+        {/* Application process card/steps */}
+      </div>
+      {/* Application Process */}
     </main>
   );
 }

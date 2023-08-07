@@ -5,7 +5,7 @@ const SectionIntro = ({ heading, description, link, linkText, linkImg }) => {
   return (
     <div className="text-center max-w-xl mx-auto">
       <h2 className="text-3xl font-bold mb-3">{heading}</h2>
-      <p className="text-sm">{description}</p>
+      <p className="text-base">{description}</p>
       <div className="flex justify-center items-center mt-5 gap-2 group">
         {link && (
           <Link

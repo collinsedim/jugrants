@@ -114,7 +114,9 @@ export default function RootLayout({ children }) {
 
   return (
     <html lang="en">
-      <body className={`${libreBaskerville.className} pattern-grid-md`}>
+      <body
+        className={`${libreBaskerville.className} pattern-grid-md text-white`}
+      >
         <main
           className={`${
             isMenuOpen ? "bg-bgSecondary text-white" : "bg-slate-900/95"
