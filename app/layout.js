@@ -8,11 +8,10 @@ import { AnimatePresence, motion } from "framer-motion";
 import "pattern.css";
 
 import Button from "./components/Button";
+import { headerMenu, footerMenu, socialProfiles } from "./components/data/data";
 
 import open from "/public/assets/open.png";
 import close from "/public/assets/close.png";
-import discord from "/public/assets/discord-white.png";
-import twitter from "/public/assets/twitter-white.png";
 
 const variants = {
   open: { opacity: 1, x: 0 },
@@ -31,13 +30,6 @@ const menuContainer = {
   },
 };
 
-// const itemInMenu = {
-//   hidden: { opacity: 0 },
-//   show: { opacity: 1 },
-// };
-
-// Fonts
-
 const libreBaskerville = Libre_Baskerville({
   subsets: ["latin"],
   weight: ["400", "700"],
@@ -48,58 +40,6 @@ export const metadata = {
   title: "JuGrants",
   description: "Let's help fund that great business/idea you have!",
 };
-
-const headerMenu = [
-  {
-    title: "Discover initatives",
-    link: "/discover-initiatives",
-  },
-  {
-    title: "Funded grants",
-    link: "/",
-  },
-  {
-    title: "Program expenses",
-    link: "/",
-  },
-  {
-    title: "Blog",
-    link: "/",
-  },
-  {
-    title: "FAQ",
-    link: "/",
-  },
-];
-
-const footerMenu = [
-  {
-    title: "About",
-  },
-  {
-    title: "FAQ",
-  },
-  {
-    title: "Brand assets",
-  },
-  {
-    title: "JuGrant Foundation",
-  },
-  {
-    title: "JuGrant trading",
-  },
-];
-
-const socialProfiles = [
-  {
-    icon: discord,
-    social: "Discord",
-  },
-  {
-    icon: twitter,
-    social: "Twitter",
-  },
-];
 
 const siteSocials = socialProfiles.map((profile, index) => (
   <Link key={index} href="#">
@@ -196,7 +136,7 @@ export default function RootLayout({ children }) {
                                 onClick={() => setIsMenuOpen(false)}
                                 key={index}
                               >
-                                {menu.title}
+                                <Link href={menu.link}>{menu.title}</Link>
                               </motion.li>
                             ))}
                           </motion.ul>
