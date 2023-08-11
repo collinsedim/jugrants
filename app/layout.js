@@ -52,18 +52,23 @@ export const metadata = {
 const headerMenu = [
   {
     title: "Discover initatives",
+    link: "/discover-initiatives",
   },
   {
     title: "Funded grants",
+    link: "/",
   },
   {
     title: "Program expenses",
+    link: "/",
   },
   {
     title: "Blog",
+    link: "/",
   },
   {
     title: "FAQ",
+    link: "/",
   },
 ];
 
@@ -117,21 +122,21 @@ export default function RootLayout({ children }) {
       <body
         className={`${libreBaskerville.className} pattern-grid-md text-white`}
       >
-        <main
-          className={`${
-            isMenuOpen ? "bg-bgSecondary text-white" : "bg-slate-900/95"
-          } min-h-screen`}
-        >
-          <div className="max-w-[1440px] mx-auto sm:px-5 px-3">
+        <section className="bg-slate-900/95 min-h-screen">
+          <main className="max-w-[1440px] mx-auto">
             {/* Header */}
-            <header className="py-5 mb-20">
-              <div className="flex justify-between items-center z-40">
+            <header
+              className={`sm:px-5 px-3 mb-20 ${
+                isMenuOpen && "bg-bgSecondary text-white"
+              }`}
+            >
+              <div className="flex justify-between items-center z-40 py-5">
                 <Link href="/">
                   <p>JuGrants</p>
                 </Link>
                 <div className="flex gap-7 md:flex-row flex-col items-center justify-center">
                   {/* Desktop Menu */}
-                  <nav className="md:block hidden">
+                  <nav className="lg:block hidden">
                     <ul className="text-base flex gap-7 items-center">
                       {headerMenu.map((menu, index) => (
                         <li
@@ -143,13 +148,13 @@ export default function RootLayout({ children }) {
                               : "text-textTertiary"
                           }`}
                         >
-                          {menu.title}
+                          <Link href={menu.link}>{menu.title}</Link>
                         </li>
                       ))}
                     </ul>
                   </nav>
                   {/* Desktop Menu */}
-                  <div className="flex md:block items-center gap-5">
+                  <div className="flex lg:block items-center gap-5">
                     <Button
                       buttonBgColor="bg-bgButton"
                       buttonLocation="/grants-application"
@@ -159,7 +164,7 @@ export default function RootLayout({ children }) {
                     <Image
                       src={isMenuOpen ? close : open}
                       alt=""
-                      className="cursor-pointer md:hidden block"
+                      className="cursor-pointer lg:hidden block"
                       onClick={() => setIsMenuOpen((prev) => !prev)}
                     />
                   </div>
@@ -171,7 +176,7 @@ export default function RootLayout({ children }) {
                         animate="open"
                         exit="closed"
                         variants={variants}
-                        className={`z-30 absolute bg-bgSecondary w-full left-0 top-24 h-[90%] flex flex-col gap-28 justify-center items-center md:hidden `}
+                        className={`z-30 absolute bg-bgSecondary w-full left-0 top-24 h-[90%] flex flex-col gap-28 justify-center items-center lg:hidden`}
                       >
                         <nav className="">
                           <motion.ul
@@ -206,10 +211,10 @@ export default function RootLayout({ children }) {
             </header>
             {/* Header */}
             {/* Main Content */}
-            <main className="mt-32">{children}</main>
+            <main className="mt-32 sm:px-5 px-3">{children}</main>
             {/* Main Content */}
             {/* Footer section */}
-            <footer className="mt-20">
+            <footer className="mt-36 pb-4 sm:px-5 px-3">
               <div className="sm:flex justify-between items-center">
                 <div className="flex justify-between gap-7">
                   <p className="text-red-600">logo</p>
@@ -221,13 +226,12 @@ export default function RootLayout({ children }) {
                     </ul>
                   </nav>
                 </div>
-
                 <div className="flex gap-5">{siteSocials}</div>
               </div>
             </footer>
             {/* Footer section */}
-          </div>
-        </main>
+          </main>
+        </section>
       </body>
     </html>
   );

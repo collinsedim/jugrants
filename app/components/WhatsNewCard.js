@@ -12,7 +12,7 @@ const WhatsNewCard = ({ fRound, title, titleBreak, date, titleFull }) => {
   return (
     <motion.div
       whileTap={{ scale: 0.9 }}
-      className="bg-bgSecondary sm:w-80 w-full rounded-3xl overflow-hidden cursor-pointer"
+      className="bg-bgSecondary w-80 rounded-3xl overflow-hidden cursor-pointer"
     >
       <div className="pattern-grid-md rounded-2xl">
         <div className="bg-slate-900/90 border-[5px] border-bgButton rounded-2xl py-10">

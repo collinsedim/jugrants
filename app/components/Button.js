@@ -2,7 +2,6 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Inter } from "next/font/google";
-
 import { motion } from "framer-motion";
 
 const inter = Inter({
@@ -17,12 +16,15 @@ const Button = ({
   buttonNameSpan,
   buttonLocation,
   buttonBgColor,
+  textColor,
 }) => {
   return (
     <Link href={buttonLocation} className={inter.className}>
       <motion.button
         whileTap={{ scale: 0.9 }}
-        className={`${buttonBgColor} hover:bg-bgButtonHover font-bold p-4 rounded-xl whitespace-nowrap shadow-md flex items-center justify-center gap-1 sm:text-lg text-base group`}
+        className={`${buttonBgColor} ${
+          textColor && textColor
+        } hover:bg-bgButtonHover font-semibold p-4 rounded-xl whitespace-nowrap shadow-md flex items-center justify-center gap-1 sm:text-lg text-base group`}
       >
         {buttonName}{" "}
         <span className="md:inline-block hidden"> {buttonNameSpan}</span>
