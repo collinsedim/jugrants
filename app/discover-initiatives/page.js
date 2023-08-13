@@ -4,6 +4,7 @@ import { Oxygen_Mono } from "next/font/google";
 
 import SectionIntro from "../components/SectionIntro";
 import { statuses, pageIntro, projectsFunded } from "../components/data/data";
+import { FundingStatus } from "../components/FundingStatus";
 
 const mono = Oxygen_Mono({
   subsets: ["latin"],
@@ -11,14 +12,6 @@ const mono = Oxygen_Mono({
   display: "swap",
   variable: "--font-mono",
 });
-
-const FundingStatus = ({ bgColor, status }) => {
-  return (
-    <p className={`bg-${bgColor} px-3 py-1 rounded-3xl font-semibold`}>
-      {status}
-    </p>
-  );
-};
 
 const DiscoverInitiatives = () => {
   const [active, setActive] = useState("all");
@@ -52,7 +45,7 @@ const DiscoverInitiatives = () => {
         </ul>
       </div>
       <div className="mt-14">
-        {projectsFunded.map((project, index) =>
+        {projectsFunded.slice(0, 10).map((project, index) =>
           active === "all" ? (
             <div
               key={`project-${index}`}
@@ -63,10 +56,10 @@ const DiscoverInitiatives = () => {
                 <FundingStatus
                   bgColor={
                     project.status.toLowerCase() === "open"
-                      ? "bgButton"
+                      ? "bg-[#6966ff]"
                       : project.status.toLowerCase() === "completed"
-                      ? "bgGreen"
-                      : "bgPrimary"
+                      ? "bg-[#16b57f]"
+                      : "bg-[#1c1c28]"
                   }
                   status={
                     project.status.toLowerCase() === "completed"
@@ -91,10 +84,10 @@ const DiscoverInitiatives = () => {
                   <FundingStatus
                     bgColor={
                       project.status.toLowerCase() === "open"
-                        ? "bgButton"
+                        ? "bg-[#6966ff]"
                         : project.status.toLowerCase() === "completed"
-                        ? "bgGreen"
-                        : "bgPrimary"
+                        ? "bg-[#16b57f]"
+                        : "bg-[#1c1c28]"
                     }
                     status={
                       project.status.toLowerCase() === "completed"

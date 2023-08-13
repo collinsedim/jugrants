@@ -16,7 +16,6 @@ import WhatsNewCard from "./components/WhatsNewCard";
 import Accordion from "./components/Accordion";
 
 import right from "/public/assets/right-white.png";
-import rightColor from "/public/assets/right.png";
 import downArrow from "/public/assets/down-arrow.png";
 import rightArrowLg from "/public/assets/right-arrow-lg.png";
 
@@ -112,7 +111,7 @@ export default function Home() {
             },
           }}
         >
-          {projectsFunded.map((project, index) => (
+          {projectsFunded.slice(0, 8).map((project, index) => (
             <SwiperSlide key={index}>
               <Card {...project} />
             </SwiperSlide>
@@ -183,31 +182,6 @@ export default function Home() {
         {/* Application process card/steps */}
       </div>
       {/* Application Process */}
-      {/* Footer Banner */}
-      <div className="mt-36 sm:px-0 px-2">
-        <div className="max-w-5xl mx-auto overflow-hidden rounded-3xl">
-          <div className="bg-gradient-to-b from-[#2c2c3d] to-[#1a1a27] shadow-md">
-            <div className="bg-gradient-to-br from-bgButton/40 to-bgButton flex justify-center">
-              <div className="text-center py-9 px-2">
-                <p>Have a project in mind?</p>
-                <h2 className="text-3xl font-bold mt-3">
-                  Let's create something awesome.
-                </h2>
-                <div className="flex justify-center mt-9">
-                  <Button
-                    buttonBgColor="bg-white"
-                    buttonName="Apply for grant"
-                    buttonLocation="#"
-                    textColor="text-bgButton"
-                    buttonImg={rightColor}
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      {/* Footer Banner */}
     </main>
   );
 }

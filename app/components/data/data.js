@@ -23,56 +23,255 @@ const projectsFunded = [
   {
     title: "Funding rates page",
     status: "Funded",
-    category: "Crowdfund",
+    category: "SMEs",
     startAmount: "$5,000",
     endAmount: "$6,000",
     description:
       "Lorem Ipsum is simply dummy text of the printing and typesetting     industry. Lorem Ipsum has been the industry's standard dummy text ever     since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.",
+    beneficiary: [
+      {
+        name: "Emem",
+        image: "😂",
+      },
+      {
+        name: "Chioma",
+        image: "😊",
+      },
+      {
+        name: "Efa",
+        image: "😎",
+      },
+    ],
+  },
+  {
+    title: "My banking app",
+    status: "Open",
+    category: "SMEs",
+    startAmount: "$5,000",
+    endAmount: "$6,000",
+    description:
+      "Lorem Ipsum is simply dummy text of the printing and typesetting     industry. Lorem Ipsum has been the industry's standard dummy text ever     since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.",
+    beneficiary: [
+      {
+        name: "Emem",
+        image: "😂",
+      },
+      {
+        name: "Chioma",
+        image: "😊",
+      },
+      {
+        name: "Efa",
+        image: "😎",
+      },
+    ],
+  },
+  {
+    title: "Fashion Design Startup",
+    status: "Funded",
+    category: "SMEs",
+    startAmount: "$5,000",
+    endAmount: "$6,000",
+    description:
+      "Lorem Ipsum is simply dummy text of the printing and typesetting     industry. Lorem Ipsum has been the industry's standard dummy text ever     since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.",
+    beneficiary: [
+      {
+        name: "Emem",
+        image: "😂",
+      },
+      {
+        name: "Chioma",
+        image: "😊",
+      },
+      {
+        name: "Efa",
+        image: "😎",
+      },
+    ],
+  },
+  {
+    title: "HR App",
+    status: "Funded",
+    category: "SMEs",
+    startAmount: "$5,000",
+    endAmount: "$6,000",
+    description:
+      "Lorem Ipsum is simply dummy text of the printing and typesetting     industry. Lorem Ipsum has been the industry's standard dummy text ever     since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.",
+    beneficiary: [
+      {
+        name: "Emem",
+        image: "😂",
+      },
+      {
+        name: "Chioma",
+        image: "😊",
+      },
+      {
+        name: "Efa",
+        image: "😎",
+      },
+    ],
   },
   {
     title: "Lorem test eedsd",
     status: "Open",
-    category: "Crowdfund",
+    category: "SMEs",
     startAmount: "$5,000",
     endAmount: "$6,000",
     description:
       "Lorem Ipsum is simply dummy text of the printing and typesetting     industry. Lorem Ipsum has been the industry's standard dummy text ever     since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.",
+    beneficiary: [
+      {
+        name: "Emem",
+        image: "😂",
+      },
+      {
+        name: "Chioma",
+        image: "😊",
+      },
+      {
+        name: "Efa",
+        image: "😎",
+      },
+    ],
   },
   {
     title: "My friend rates",
     status: "Completed",
-    category: "Crowdfund",
+    category: "Marketing",
     startAmount: "$5,000",
     endAmount: "$6,000",
     description:
       "Lorem Ipsum is simply dummy text of the printing and typesetting     industry. Lorem Ipsum has been the industry's standard dummy text ever     since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.",
+    beneficiary: [
+      {
+        name: "Emem",
+        image: "😂",
+      },
+      {
+        name: "Chioma",
+        image: "😊",
+      },
+      {
+        name: "Efa",
+        image: "😎",
+      },
+    ],
   },
   {
     title: "Your fire eedsd",
     status: "Funded",
-    category: "Crowdfund",
+    category: "Marketing",
     startAmount: "$5,000",
     endAmount: "$6,000",
     description:
       "Lorem Ipsum is simply dummy text of the printing and typesetting     industry. Lorem Ipsum has been the industry's standard dummy text ever     since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.",
+    beneficiary: [
+      {
+        name: "Emem",
+        image: "😂",
+      },
+      {
+        name: "Chioma",
+        image: "😊",
+      },
+      {
+        name: "Efa",
+        image: "😎",
+      },
+    ],
   },
   {
     title: "Grundonsn page",
     status: "Completed",
-    category: "Crowdfund",
+    category: "Governance",
     startAmount: "$5,000",
     endAmount: "$6,000",
     description:
       "Lorem Ipsum is simply dummy text of the printing and typesetting     industry. Lorem Ipsum has been the industry's standard dummy text ever     since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.",
+    beneficiary: [
+      {
+        name: "Emem",
+        image: "😂",
+      },
+      {
+        name: "Chioma",
+        image: "😊",
+      },
+      {
+        name: "Efa",
+        image: "😎",
+      },
+    ],
   },
   {
     title: "Guaridalonsdj eedsd",
     status: "Open",
-    category: "Crowdfund",
+    category: "Technical",
     startAmount: "$5,000",
     endAmount: "$6,000",
     description:
       "Lorem Ipsum is simply dummy text of the printing and typesetting     industry. Lorem Ipsum has been the industry's standard dummy text ever     since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.",
+    beneficiary: [
+      {
+        name: "Emem",
+        image: "😂",
+      },
+      {
+        name: "Chioma",
+        image: "😊",
+      },
+      {
+        name: "Efa",
+        image: "😎",
+      },
+    ],
+  },
+  {
+    title: "Phone Poll",
+    status: "Completed",
+    category: "Technical",
+    startAmount: "$25,000",
+    endAmount: "$63,000",
+    description:
+      "Lorem Ipsum is simply dummy text of the printing and typesetting     industry. Lorem Ipsum has been the industry's standard dummy text ever     since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.",
+    beneficiary: [
+      {
+        name: "Emem",
+        image: "😂",
+      },
+      {
+        name: "Chioma",
+        image: "😊",
+      },
+      {
+        name: "Efa",
+        image: "😎",
+      },
+    ],
+  },
+  {
+    title: "Guaridalonsdj eedsd",
+    status: "Completed",
+    category: "Technical",
+    startAmount: "$5,000",
+    endAmount: "$6,000",
+    description:
+      "Lorem Ipsum is simply dummy text of the printing and typesetting     industry. Lorem Ipsum has been the industry's standard dummy text ever     since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.",
+    beneficiary: [
+      {
+        name: "Emem",
+        image: "😂",
+      },
+      {
+        name: "Chioma",
+        image: "😊",
+      },
+      {
+        name: "Efa",
+        image: "😎",
+      },
+    ],
   },
 ];
 
@@ -245,6 +444,7 @@ const statuses = [
     title: "Completed",
   },
 ];
+
 // Grants Application page
 
 export {

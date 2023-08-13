@@ -9,9 +9,11 @@ import "pattern.css";
 
 import Button from "./components/Button";
 import { headerMenu, footerMenu, socialProfiles } from "./components/data/data";
+import { GrantsProvider } from "./providers/GrantsProvider";
 
 import open from "/public/assets/open.png";
 import close from "/public/assets/close.png";
+import rightColor from "/public/assets/right.png";
 
 const variants = {
   open: { opacity: 1, x: 0 },
@@ -151,10 +153,37 @@ export default function RootLayout({ children }) {
             </header>
             {/* Header */}
             {/* Main Content */}
-            <main className="mt-32 sm:px-5 px-3">{children}</main>
+            <GrantsProvider>
+              <main className="mt-32 sm:px-5 px-3">{children}</main>
+            </GrantsProvider>
             {/* Main Content */}
             {/* Footer section */}
             <footer className="mt-36 pb-4 sm:px-5 px-3">
+              {/* Footer Banner */}
+              <div className="mb-28">
+                <div className="max-w-5xl mx-auto overflow-hidden rounded-3xl">
+                  <div className="bg-gradient-to-b from-[#2c2c3d] to-[#1a1a27] shadow-md">
+                    <div className="bg-gradient-to-br from-bgButton/40 to-bgButton flex justify-center">
+                      <div className="text-center py-9 px-2">
+                        <p>Have a project in mind?</p>
+                        <h2 className="text-3xl font-bold mt-3">
+                          Let's create something awesome.
+                        </h2>
+                        <div className="flex justify-center mt-9">
+                          <Button
+                            buttonBgColor="bg-white"
+                            buttonName="Apply for grant"
+                            buttonLocation="#"
+                            textColor="text-bgButton"
+                            buttonImg={rightColor}
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              {/* Footer Banner */}
               <div className="sm:flex justify-between items-center">
                 <div className="flex justify-between gap-7">
                   <p className="text-red-600">logo</p>

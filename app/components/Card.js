@@ -1,5 +1,10 @@
 import { Inter, Oxygen_Mono } from "next/font/google";
+import { useContext } from "react";
 import { motion } from "framer-motion";
+
+import { GrantsContext } from "../providers/GrantsProvider";
+
+import Link from "next/link";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -14,52 +19,80 @@ const mono = Oxygen_Mono({
   variable: "--font-mono",
 });
 
-const grantBeneficiaries = [
-  {
-    name: "Emem",
-    image: "😂",
-  },
-  {
-    name: "Chioma",
-    image: "😊",
-  },
-  {
-    name: "Efa",
-    image: "😎",
-  },
-];
+// const grantBeneficiaries = [
+//   {
+//     name: "Emem",
+//     image: "😂",
+//   },
+//   {
+//     name: "Chioma",
+//     image: "😊",
+//   },
+//   {
+//     name: "Efa",
+//     image: "😎",
+//   },
+// ];
 
-const Card = ({ title, description, startAmount, endAmount, category }) => {
+const Card = ({
+  title,
+  description,
+  startAmount,
+  endAmount,
+  category,
+  status,
+  beneficiary,
+}) => {
+  const { setFundedGrants } = useContext(GrantsContext);
+
+  const handleClick = () => {
+    setFundedGrants({
+      title,
+      description,
+      startAmount,
+      endAmount,
+      category,
+      status,
+      beneficiary,
+    });
+  };
+
   return (
-    <motion.div
-      whileTap={{ scale: 0.9 }}
-      className="cursor-pointer bg-bgSecondary rounded-3xl "
+    <Link
+      onClick={handleClick}
+      href={`/funded-grants/${title.replaceAll(" ", "-").toLowerCase()}`}
     >
-      <div className="h-[160px] bg-slate-900/95 rounded-3xl"></div>
-      <div
-        className={`text-left p-6 flex flex-col gap-3 text-sm ${inter.className}`}
+      <motion.div
+        whileTap={{ scale: 0.9 }}
+        className="cursor-pointer bg-bgSecondary rounded-3xl "
       >
-        <p className={`${mono.className} text-textTertiary`}>{category}</p>
-        <h3 className="text-2xl font-bold">{title}</h3>
-        <p className={`${mono.className} text-textTertiary`}>
-          Funding amount: <span>{startAmount}</span> - <span>{endAmount}</span>
-        </p>
-        <p className="font-basker">{description}</p>
-        <div className="flex">
-          {grantBeneficiaries.map((beneficiary, index) => (
-            <p
-              key={index}
-              className="bg-textSecondary p-3 rounded-full group cursor-pointer border-2 border-slate-800 first-of-type:ml-0 -ml-4 hover:z-10"
-            >
-              {beneficiary.image}
-              <span className="ml-2 group-hover:inline-block hidden text-slate-950 font-semibold">
-                {beneficiary.name}
-              </span>
-            </p>
-          ))}
+        <div className="h-[160px] bg-slate-900/95 rounded-3xl"></div>
+        <div
+          className={`text-left p-6 flex flex-col gap-3 text-sm ${inter.className}`}
+        >
+          <p className={`${mono.className} text-textTertiary`}>{category}</p>
+          <h3 className="text-2xl font-bold">{title}</h3>
+          <p className={`${mono.className} text-textTertiary`}>
+            Funding amount: <span>{startAmount}</span> -{" "}
+            <span>{endAmount}</span>
+          </p>
+          <p className="font-basker">{description}</p>
+          <div className="flex">
+            {beneficiary.map((person, index) => (
+              <p
+                key={index}
+                className="bg-textSecondary p-3 rounded-full group cursor-pointer border-2 border-slate-800 first-of-type:ml-0 -ml-4 hover:z-10"
+              >
+                {person.image}
+                <span className="ml-2 group-hover:inline-block hidden text-slate-950 font-semibold">
+                  {person.name}
+                </span>
+              </p>
+            ))}
+          </div>
         </div>
-      </div>
-    </motion.div>
+      </motion.div>
+    </Link>
   );
 };
 
