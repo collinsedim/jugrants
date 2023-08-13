@@ -1,6 +1,9 @@
 "use client";
 import { useState } from "react";
 import Link from "next/link";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css/bundle";
+import { FreeMode, Pagination, Navigation } from "swiper/modules";
 
 import onButton from "public/assets/on-button.png";
 import offButton from "public/assets/off-button.png";
@@ -8,24 +11,11 @@ import { projectsFunded } from "../components/data/data";
 import Card from "../components/Card";
 import Image from "next/image";
 
-const projectCategory = [
-  {
-    category: "SMEs",
-  },
-  {
-    category: "Marketing",
-  },
-  {
-    category: "Governance",
-  },
-  {
-    category: "Technical",
-  },
-];
-
 const FundedGrants = () => {
   const [active, setActive] = useState("all");
   const [showCompleted, setShowCompleted] = useState(false);
+
+  const uniqueCategories = {};
 
   const filteredProjects = projectsFunded.filter(
     (project) => active === "all" || active === project.category
@@ -39,26 +29,45 @@ const FundedGrants = () => {
     <div className="max-w-7xl mx-auto">
       <h1 className="text-center text-5xl font-bold">Funded Grants</h1>
       <div className="">
-        <ul className="flex gap-3 mt-5">
-          <li
-            className={`${
-              active.toLowerCase() === "all" && "bg-bgSecondary"
-            } p-3 rounded-xl cursor-pointer`}
-            onClick={() => setActive("all")}
+        <ul className="gap-3 mt-5">
+          <Swiper
+            slidesPerView="auto"
+            spaceBetween={10}
+            freeMode={true}
+            cssMode={true}
+            scrollbar={true}
           >
-            All
-          </li>
-          {projectCategory.map((project, index) => (
-            <li
-              key={index}
-              className={`${
-                active === project.category && "bg-bgSecondary"
-              } p-3 rounded-xl cursor-pointer`}
-              onClick={() => setActive(project.category)}
-            >
-              {project.category}
-            </li>
-          ))}
+            <SwiperSlide>
+              <li
+                className={`${
+                  active.toLowerCase() === "all" && "bg-bgSecondary"
+                } p-3 rounded-xl cursor-pointer`}
+                onClick={() => setActive("all")}
+              >
+                All
+              </li>
+            </SwiperSlide>
+            {projectsFunded
+              .filter((project) => {
+                if (!uniqueCategories[project.category]) {
+                  uniqueCategories[project.category] = true;
+                  return true;
+                }
+                return false;
+              })
+              .map((project) => (
+                <SwiperSlide key={project.category}>
+                  <li
+                    className={`${
+                      active === project.category && "bg-bgSecondary"
+                    } p-3 rounded-xl cursor-pointer`}
+                    onClick={() => setActive(project.category)}
+                  >
+                    {project.category}
+                  </li>
+                </SwiperSlide>
+              ))}
+          </Swiper>
         </ul>
       </div>
       <div

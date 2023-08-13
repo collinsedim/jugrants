@@ -6,8 +6,13 @@ import Button from "@/app/components/Button";
 import { FundingStatus } from "@/app/components/FundingStatus";
 
 import goBack from "public/assets/arrow-left.png";
+import arrowRightColor from "public/assets/right.png";
+import externalLinkIcon from "public/assets/external-link.png";
 import Image from "next/image";
 import GrantsDescription from "@/app/components/GrantsDescription";
+import SectionIntro from "@/app/components/SectionIntro";
+import { projectsFunded } from "@/app/components/data/data";
+import Card from "@/app/components/Card";
 
 const SingleGrantsPage = () => {
   const { fundedGrants } = useContext(GrantsContext);
@@ -24,6 +29,9 @@ const SingleGrantsPage = () => {
     category,
     status,
     beneficiary,
+    purpose,
+    execution,
+    payment_structure,
   } = fundedGrants;
 
   return (
@@ -31,7 +39,7 @@ const SingleGrantsPage = () => {
       <div className="flex gap-8">
         <Link
           href="/funded-grants"
-          className="bg-bgSecondary rounded-full h-10 w-10 p-2"
+          className="bg-bgSecondary hover:bg-bgSecondary/80 rounded-full h-10 w-10 p-2 flex items-center justify-center"
         >
           <Image height={32} width={32} src={goBack} alt="" />
         </Link>
@@ -65,6 +73,7 @@ const SingleGrantsPage = () => {
                 buttonBgColor="bg-bgButton"
                 buttonLocation="#"
                 buttonName="Project link"
+                buttonImg={externalLinkIcon}
               />
             </div>
             {/* Team section */}
@@ -83,11 +92,38 @@ const SingleGrantsPage = () => {
               </div>
             </div>
             {/* End Team section */}
-            <hr className="my-5 border-2 border-bgSecondary" />
-            {/* Project details section */}
-            <GrantsDescription title="Description" details={description} />
-            {/* End Project details section */}
           </div>
+        </div>
+      </div>
+      <div className="sm:px-0 px-3">
+        <hr className="my-5 border-2 border-bgSecondary" />
+        {/* Project details section */}
+        <GrantsDescription title="Description" details={description} />
+        <GrantsDescription title="Purpose" details={purpose} />
+        <GrantsDescription title="Execution" details={execution} />
+        <GrantsDescription
+          title="Payment Structure"
+          details={payment_structure}
+        />
+        {/* End Project details section */}
+        <div className="mt-36">
+          <SectionIntro
+            heading="More grants like this"
+            link="#"
+            linkText="View all similar projects"
+            linkImg={arrowRightColor}
+          />
+        </div>
+        <div className="mt-20 grid grid-cols-1 md:grid-cols-2 gap-6 justify-center">
+          {projectsFunded
+            .filter(
+              (project) =>
+                project.category === category && project.title !== title
+            )
+            .slice(0, 2)
+            .map((project) => (
+              <Card key={project.title} {...project} />
+            ))}
         </div>
       </div>
     </div>

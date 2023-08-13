@@ -19,21 +19,6 @@ const mono = Oxygen_Mono({
   variable: "--font-mono",
 });
 
-// const grantBeneficiaries = [
-//   {
-//     name: "Emem",
-//     image: "😂",
-//   },
-//   {
-//     name: "Chioma",
-//     image: "😊",
-//   },
-//   {
-//     name: "Efa",
-//     image: "😎",
-//   },
-// ];
-
 const Card = ({
   title,
   description,
@@ -42,6 +27,9 @@ const Card = ({
   category,
   status,
   beneficiary,
+  purpose,
+  execution,
+  payment_structure,
 }) => {
   const { setFundedGrants } = useContext(GrantsContext);
 
@@ -54,6 +42,9 @@ const Card = ({
       category,
       status,
       beneficiary,
+      purpose,
+      execution,
+      payment_structure,
     });
   };
 
@@ -71,12 +62,14 @@ const Card = ({
           className={`text-left p-6 flex flex-col gap-3 text-sm ${inter.className}`}
         >
           <p className={`${mono.className} text-textTertiary`}>{category}</p>
-          <h3 className="text-2xl font-bold">{title}</h3>
+          <h3 className="text-xl font-bold whitespace-nowrap overflow-hidden text-ellipsis">
+            {title}
+          </h3>
           <p className={`${mono.className} text-textTertiary`}>
             Funding amount: <span>{startAmount}</span> -{" "}
             <span>{endAmount}</span>
           </p>
-          <p className="font-basker">{description}</p>
+          <p className="font-basker">{description.slice(0, 150) + "..."}</p>
           <div className="flex">
             {beneficiary.map((person, index) => (
               <p

@@ -11,3 +11,6 @@
   background-repeat: repeat;
   @apply text-white;
 } */
+.swiper-wrapper .swiper-slide {
+  width: auto;
+}

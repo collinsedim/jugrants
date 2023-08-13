@@ -32,7 +32,7 @@ const Button = ({
           <Image
             src={buttonImg}
             alt=""
-            className="sm:block hidden group-hover:translate-x-1 duration-150"
+            className="group-hover:translate-x-1 duration-150"
             width={20}
             height={20}
           />
