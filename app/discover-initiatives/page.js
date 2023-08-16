@@ -22,7 +22,7 @@ const DiscoverInitiatives = () => {
         <SectionIntro {...pageIntro} />
       </div>
       <div className="flex justify-center">
-        <ul className="flex gap-3 mt-5">
+        <ul className="flex gap-1 mt-5">
           <li
             className={`${
               active.toLowerCase() === "all" && "bg-bgSecondary"
@@ -49,9 +49,9 @@ const DiscoverInitiatives = () => {
           active === "all" ? (
             <div
               key={`project-${index}`}
-              className="bg-bgSecondary p-5 rounded-2xl flex flex-col gap-3 mb-5"
+              className="bg-bgSecondary hover:bg-bgSecondary/80 p-5 rounded-2xl flex flex-col gap-3 mb-5"
             >
-              <div className="flex justify-between">
+              <div className="flex justify-between items-center gap-1">
                 <h3 className="text-xl font-bold">{project.title}</h3>
                 <FundingStatus
                   bgColor={
@@ -68,7 +68,9 @@ const DiscoverInitiatives = () => {
                   }
                 />
               </div>
-              <p className="max-w-[80%]">{project.description.slice(0, 100)}</p>
+              <p className="max-w-[80%] text-textSecondary">
+                {project.description.slice(0, 100)}
+              </p>
               <p className={`${mono.className} text-sm`}>
                 Funding amount: {project.startAmount} - {project.endAmount}
               </p>
@@ -77,9 +79,9 @@ const DiscoverInitiatives = () => {
             active === project.status && (
               <div
                 key={`project-${index}`}
-                className="bg-bgSecondary p-5 rounded-2xl flex flex-col gap-3 mb-5"
+                className="bg-bgSecondary hover:bg-bgSecondary/80 p-5 rounded-2xl flex flex-col gap-3 mb-5"
               >
-                <div className="flex justify-between">
+                <div className="flex justify-between items-center gap-1">
                   <h3 className="text-xl font-bold">{project.title}</h3>
                   <FundingStatus
                     bgColor={
@@ -96,7 +98,7 @@ const DiscoverInitiatives = () => {
                     }
                   />
                 </div>
-                <p className="max-w-[80%]">
+                <p className="max-w-[80%] text-textSecondary">
                   {project.description.slice(0, 100)}
                 </p>
                 <p className={`${mono.className} text-sm`}>

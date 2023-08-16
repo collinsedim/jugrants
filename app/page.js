@@ -12,7 +12,7 @@ register();
 import Button from "./components/Button";
 import Card from "./components/Card";
 import SectionIntro from "./components/SectionIntro";
-import WhatsNewCard from "./components/WhatsNewCard";
+import BlogCard from "./components/BlogCard";
 import Accordion from "./components/Accordion";
 
 import right from "/public/assets/right-white.png";
@@ -20,8 +20,8 @@ import downArrow from "/public/assets/down-arrow.png";
 import rightArrowLg from "/public/assets/right-arrow-lg.png";
 
 import {
-  sectionDescription,
-  whatsNewCardData,
+  projectsFundedIntro,
+  blogData,
   whatsNewIntro,
   faqData,
   faqIntro,
@@ -82,7 +82,7 @@ export default function Home() {
           <div className="flex justify-center my-8">
             <Image src={downArrow} alt="" />
           </div>
-          <SectionIntro {...sectionDescription} />
+          <SectionIntro {...projectsFundedIntro} />
         </div>
       </div>
       <div className="mt-14">
@@ -124,8 +124,8 @@ export default function Home() {
         <SectionIntro {...whatsNewIntro} />
         <div className="flex justify-center">
           <div className="mt-14 flex md:flex-row flex-col gap-8 sm:px-0 px-6 max-w-[800px] ">
-            {whatsNewCardData.map((whatsNew, index) => (
-              <WhatsNewCard key={index} {...whatsNew} />
+            {blogData.map((blog) => (
+              <BlogCard key={blog.title} {...blog} />
             ))}
           </div>
         </div>

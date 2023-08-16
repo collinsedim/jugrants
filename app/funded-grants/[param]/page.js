@@ -81,13 +81,20 @@ const SingleGrantsPage = () => {
               <p className="font-bold mb-3 mt-10">Team</p>
               <div className="flex gap-3 flex-wrap">
                 {beneficiary.map((person) => (
-                  <div
+                  <Link
+                    href={`/grantee/${person.name
+                      .toLowerCase()
+                      .replaceAll(" ", "-")}`}
                     key={person.name}
-                    className="bg-bgSecondary p-3 rounded-full group cursor-pointer flex gap-2"
+                    className="bg-bgSecondary p-3 rounded-full group cursor-pointer flex items-center gap-2"
                   >
-                    <p className="">{person.image}</p>
+                    <Image
+                      className="rounded-full object-center object-cover w-8 h-8"
+                      src={person.image}
+                      alt={person.name}
+                    />
                     <span className="font-semibold">{person.name}</span>
-                  </div>
+                  </Link>
                 ))}
               </div>
             </div>

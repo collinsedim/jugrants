@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import { GrantsContext } from "../providers/GrantsProvider";
 
 import Link from "next/link";
+import Image from "next/image";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -72,15 +73,19 @@ const Card = ({
           <p className="font-basker">{description.slice(0, 150) + "..."}</p>
           <div className="flex">
             {beneficiary.map((person, index) => (
-              <p
+              <div
                 key={index}
-                className="bg-textSecondary p-3 rounded-full group cursor-pointer border-2 border-slate-800 first-of-type:ml-0 -ml-4 hover:z-10"
+                className="bg-textSecondary p-1 rounded-full group cursor-pointer border-2 border-slate-800 first-of-type:ml-0 -ml-4 hover:z-10 flex gap-2 items-center"
               >
-                {person.image}
-                <span className="ml-2 group-hover:inline-block hidden text-slate-950 font-semibold">
+                <Image
+                  className="rounded-full object-center object-cover w-8 h-8"
+                  src={person.image}
+                  alt={person.name}
+                />
+                <p className="group-hover:inline-block hidden text-slate-950 font-semibold pr-2">
                   {person.name}
-                </span>
-              </p>
+                </p>
+              </div>
             ))}
           </div>
         </div>

@@ -2,6 +2,17 @@ import rightColor from "/public/assets/right.png";
 import discord from "/public/assets/discord-white.png";
 import twitter from "/public/assets/twitter-white.png";
 
+// Grantee images
+import grantee from "/public/grantee-uploads/grantee.jpg";
+import grantee1 from "/public/grantee-uploads/grantee-1.jpg";
+import grantee2 from "/public/grantee-uploads/grantee-2.jpg";
+
+// Socials Icon
+import twitterIcon from "/public/assets/social/twitter.png";
+import githubIcon from "/public/assets/social/github.png";
+import websiteIcon from "/public/assets/social/link.png";
+import linkedInIcon from "/public/assets/social/linkedin.png";
+
 // Main page data
 
 const grantsSummary = [
@@ -18,317 +29,6 @@ const grantsSummary = [
     digits: "84+ projects",
   },
 ];
-
-// const projectsFunded = [
-//   {
-//     title: "Funding rates page",
-//     status: "Funded",
-//     category: "SMEs",
-//     startAmount: "$5,000",
-//     endAmount: "$6,000",
-//     description:
-//       "Grant includes work on Funding Rates page, Rewards & Tracking Simulator, and CLI Trading tool. All will be combined in a community accessible webpage that will continue to host additional work done and maintenance on behalf of Chaos Labs.",
-//     purpose:
-//       "Funding Rates page will help promote and guide traders around Perpetual premiums found across all assets traded on dYdX. Rewards & Tracking simulator will help market the benefits of trading on dYdX and assist current traders in mapping out their rewards. The CLI trading tool will make it easier for non-UI based traders to execute quickly on dYdX. The general purpose of this grant is to recruit Chaos Labs, a very qualified contributor, to work with dYdX on current and future projects.",
-//     execution:
-//       "3 months to completion. Each individual grant is estimated to take 120 days, but will be worked on concurrently.",
-//     payment_structure: "25% upfront / 75% at completion of all Grants",
-//     beneficiary: [
-//       {
-//         name: "Emem",
-//         image: "😂",
-//       },
-//       {
-//         name: "Chioma",
-//         image: "😊",
-//       },
-//       {
-//         name: "Efa",
-//         image: "😎",
-//       },
-//     ],
-//   },
-//   {
-//     title: "My banking app",
-//     status: "Open",
-//     category: "SMEs",
-//     startAmount: "$5,000",
-//     endAmount: "$6,000",
-//     description:
-//       "Grant includes work on Funding Rates page, Rewards & Tracking Simulator, and CLI Trading tool. All will be combined in a community accessible webpage that will continue to host additional work done and maintenance on behalf of Chaos Labs.",
-//     purpose:
-//       "Funding Rates page will help promote and guide traders around Perpetual premiums found across all assets traded on dYdX. Rewards & Tracking simulator will help market the benefits of trading on dYdX and assist current traders in mapping out their rewards. The CLI trading tool will make it easier for non-UI based traders to execute quickly on dYdX. The general purpose of this grant is to recruit Chaos Labs, a very qualified contributor, to work with dYdX on current and future projects.",
-//     execution:
-//       "3 months to completion. Each individual grant is estimated to take 120 days, but will be worked on concurrently.",
-//     payment_structure: "25% upfront / 75% at completion of all Grants",
-//     beneficiary: [
-//       {
-//         name: "Emem",
-//         image: "😂",
-//       },
-//       {
-//         name: "Chioma",
-//         image: "😊",
-//       },
-//       {
-//         name: "Efa",
-//         image: "😎",
-//       },
-//     ],
-//   },
-//   {
-//     title: "Fashion Design Startup",
-//     status: "Funded",
-//     category: "SMEs",
-//     startAmount: "$5,000",
-//     endAmount: "$6,000",
-//     description:
-//       "Grant includes work on Funding Rates page, Rewards & Tracking Simulator, and CLI Trading tool. All will be combined in a community accessible webpage that will continue to host additional work done and maintenance on behalf of Chaos Labs.",
-//     purpose:
-//       "Funding Rates page will help promote and guide traders around Perpetual premiums found across all assets traded on dYdX. Rewards & Tracking simulator will help market the benefits of trading on dYdX and assist current traders in mapping out their rewards. The CLI trading tool will make it easier for non-UI based traders to execute quickly on dYdX. The general purpose of this grant is to recruit Chaos Labs, a very qualified contributor, to work with dYdX on current and future projects.",
-//     execution:
-//       "3 months to completion. Each individual grant is estimated to take 120 days, but will be worked on concurrently.",
-//     payment_structure: "25% upfront / 75% at completion of all Grants",
-//     beneficiary: [
-//       {
-//         name: "Emem",
-//         image: "😂",
-//       },
-//       {
-//         name: "Chioma",
-//         image: "😊",
-//       },
-//       {
-//         name: "Efa",
-//         image: "😎",
-//       },
-//     ],
-//   },
-//   {
-//     title: "HR App",
-//     status: "Funded",
-//     category: "SMEs",
-//     startAmount: "$5,000",
-//     endAmount: "$6,000",
-//     description:
-//       "Grant includes work on Funding Rates page, Rewards & Tracking Simulator, and CLI Trading tool. All will be combined in a community accessible webpage that will continue to host additional work done and maintenance on behalf of Chaos Labs.",
-//     purpose:
-//       "Funding Rates page will help promote and guide traders around Perpetual premiums found across all assets traded on dYdX. Rewards & Tracking simulator will help market the benefits of trading on dYdX and assist current traders in mapping out their rewards. The CLI trading tool will make it easier for non-UI based traders to execute quickly on dYdX. The general purpose of this grant is to recruit Chaos Labs, a very qualified contributor, to work with dYdX on current and future projects.",
-//     execution:
-//       "3 months to completion. Each individual grant is estimated to take 120 days, but will be worked on concurrently.",
-//     payment_structure: "25% upfront / 75% at completion of all Grants",
-//     beneficiary: [
-//       {
-//         name: "Emem",
-//         image: "😂",
-//       },
-//       {
-//         name: "Chioma",
-//         image: "😊",
-//       },
-//       {
-//         name: "Efa",
-//         image: "😎",
-//       },
-//     ],
-//   },
-//   {
-//     title: "Lorem test eedsd",
-//     status: "Open",
-//     category: "SMEs",
-//     startAmount: "$5,000",
-//     endAmount: "$6,000",
-//     description:
-//       "Grant includes work on Funding Rates page, Rewards & Tracking Simulator, and CLI Trading tool. All will be combined in a community accessible webpage that will continue to host additional work done and maintenance on behalf of Chaos Labs.",
-//     purpose:
-//       "Funding Rates page will help promote and guide traders around Perpetual premiums found across all assets traded on dYdX. Rewards & Tracking simulator will help market the benefits of trading on dYdX and assist current traders in mapping out their rewards. The CLI trading tool will make it easier for non-UI based traders to execute quickly on dYdX. The general purpose of this grant is to recruit Chaos Labs, a very qualified contributor, to work with dYdX on current and future projects.",
-//     execution:
-//       "3 months to completion. Each individual grant is estimated to take 120 days, but will be worked on concurrently.",
-//     payment_structure: "25% upfront / 75% at completion of all Grants",
-//     beneficiary: [
-//       {
-//         name: "Emem",
-//         image: "😂",
-//       },
-//       {
-//         name: "Chioma",
-//         image: "😊",
-//       },
-//       {
-//         name: "Efa",
-//         image: "😎",
-//       },
-//     ],
-//   },
-//   {
-//     title: "My friend rates",
-//     status: "Completed",
-//     category: "Marketing",
-//     startAmount: "$5,000",
-//     endAmount: "$6,000",
-//     description:
-//       "Grant includes work on Funding Rates page, Rewards & Tracking Simulator, and CLI Trading tool. All will be combined in a community accessible webpage that will continue to host additional work done and maintenance on behalf of Chaos Labs.",
-//     purpose:
-//       "Funding Rates page will help promote and guide traders around Perpetual premiums found across all assets traded on dYdX. Rewards & Tracking simulator will help market the benefits of trading on dYdX and assist current traders in mapping out their rewards. The CLI trading tool will make it easier for non-UI based traders to execute quickly on dYdX. The general purpose of this grant is to recruit Chaos Labs, a very qualified contributor, to work with dYdX on current and future projects.",
-//     execution:
-//       "3 months to completion. Each individual grant is estimated to take 120 days, but will be worked on concurrently.",
-//     payment_structure: "25% upfront / 75% at completion of all Grants",
-//     beneficiary: [
-//       {
-//         name: "Emem",
-//         image: "😂",
-//       },
-//       {
-//         name: "Chioma",
-//         image: "😊",
-//       },
-//       {
-//         name: "Efa",
-//         image: "😎",
-//       },
-//     ],
-//   },
-//   {
-//     title: "Your fire eedsd",
-//     status: "Funded",
-//     category: "Marketing",
-//     startAmount: "$5,000",
-//     endAmount: "$6,000",
-//     description:
-//       "Grant includes work on Funding Rates page, Rewards & Tracking Simulator, and CLI Trading tool. All will be combined in a community accessible webpage that will continue to host additional work done and maintenance on behalf of Chaos Labs.",
-//     purpose:
-//       "Funding Rates page will help promote and guide traders around Perpetual premiums found across all assets traded on dYdX. Rewards & Tracking simulator will help market the benefits of trading on dYdX and assist current traders in mapping out their rewards. The CLI trading tool will make it easier for non-UI based traders to execute quickly on dYdX. The general purpose of this grant is to recruit Chaos Labs, a very qualified contributor, to work with dYdX on current and future projects.",
-//     execution:
-//       "3 months to completion. Each individual grant is estimated to take 120 days, but will be worked on concurrently.",
-//     payment_structure: "25% upfront / 75% at completion of all Grants",
-//     beneficiary: [
-//       {
-//         name: "Emem",
-//         image: "😂",
-//       },
-//       {
-//         name: "Chioma",
-//         image: "😊",
-//       },
-//       {
-//         name: "Efa",
-//         image: "😎",
-//       },
-//     ],
-//   },
-//   {
-//     title: "Grundonsn page",
-//     status: "Completed",
-//     category: "Governance",
-//     startAmount: "$5,000",
-//     endAmount: "$6,000",
-//     description:
-//       "Grant includes work on Funding Rates page, Rewards & Tracking Simulator, and CLI Trading tool. All will be combined in a community accessible webpage that will continue to host additional work done and maintenance on behalf of Chaos Labs.",
-//     purpose:
-//       "Funding Rates page will help promote and guide traders around Perpetual premiums found across all assets traded on dYdX. Rewards & Tracking simulator will help market the benefits of trading on dYdX and assist current traders in mapping out their rewards. The CLI trading tool will make it easier for non-UI based traders to execute quickly on dYdX. The general purpose of this grant is to recruit Chaos Labs, a very qualified contributor, to work with dYdX on current and future projects.",
-//     execution:
-//       "3 months to completion. Each individual grant is estimated to take 120 days, but will be worked on concurrently.",
-//     payment_structure: "25% upfront / 75% at completion of all Grants",
-//     beneficiary: [
-//       {
-//         name: "Emem",
-//         image: "😂",
-//       },
-//       {
-//         name: "Chioma",
-//         image: "😊",
-//       },
-//       {
-//         name: "Efa",
-//         image: "😎",
-//       },
-//     ],
-//   },
-//   {
-//     title: "Guaridalonsdj eedsd",
-//     status: "Open",
-//     category: "Technical",
-//     startAmount: "$5,000",
-//     endAmount: "$6,000",
-//     description:
-//       "Grant includes work on Funding Rates page, Rewards & Tracking Simulator, and CLI Trading tool. All will be combined in a community accessible webpage that will continue to host additional work done and maintenance on behalf of Chaos Labs.",
-//     purpose:
-//       "Funding Rates page will help promote and guide traders around Perpetual premiums found across all assets traded on dYdX. Rewards & Tracking simulator will help market the benefits of trading on dYdX and assist current traders in mapping out their rewards. The CLI trading tool will make it easier for non-UI based traders to execute quickly on dYdX. The general purpose of this grant is to recruit Chaos Labs, a very qualified contributor, to work with dYdX on current and future projects.",
-//     execution:
-//       "3 months to completion. Each individual grant is estimated to take 120 days, but will be worked on concurrently.",
-//     payment_structure: "25% upfront / 75% at completion of all Grants",
-//     beneficiary: [
-//       {
-//         name: "Emem",
-//         image: "😂",
-//       },
-//       {
-//         name: "Chioma",
-//         image: "😊",
-//       },
-//       {
-//         name: "Efa",
-//         image: "😎",
-//       },
-//     ],
-//   },
-//   {
-//     title: "Phone Poll",
-//     status: "Completed",
-//     category: "Technical",
-//     startAmount: "$25,000",
-//     endAmount: "$63,000",
-//     description:
-//       "Grant includes work on Funding Rates page, Rewards & Tracking Simulator, and CLI Trading tool. All will be combined in a community accessible webpage that will continue to host additional work done and maintenance on behalf of Chaos Labs.",
-//     purpose:
-//       "Funding Rates page will help promote and guide traders around Perpetual premiums found across all assets traded on dYdX. Rewards & Tracking simulator will help market the benefits of trading on dYdX and assist current traders in mapping out their rewards. The CLI trading tool will make it easier for non-UI based traders to execute quickly on dYdX. The general purpose of this grant is to recruit Chaos Labs, a very qualified contributor, to work with dYdX on current and future projects.",
-//     execution:
-//       "3 months to completion. Each individual grant is estimated to take 120 days, but will be worked on concurrently.",
-//     payment_structure: "25% upfront / 75% at completion of all Grants",
-//     beneficiary: [
-//       {
-//         name: "Emem",
-//         image: "😂",
-//       },
-//       {
-//         name: "Chioma",
-//         image: "😊",
-//       },
-//       {
-//         name: "Efa",
-//         image: "😎",
-//       },
-//     ],
-//   },
-//   {
-//     title: "Guaridalonsdj eedsd",
-//     status: "Completed",
-//     category: "Technical",
-//     startAmount: "$5,000",
-//     endAmount: "$6,000",
-//     description:
-//       "Grant includes work on Funding Rates page, Rewards & Tracking Simulator, and CLI Trading tool. All will be combined in a community accessible webpage that will continue to host additional work done and maintenance on behalf of Chaos Labs.",
-//     purpose:
-//       "Funding Rates page will help promote and guide traders around Perpetual premiums found across all assets traded on dYdX. Rewards & Tracking simulator will help market the benefits of trading on dYdX and assist current traders in mapping out their rewards. The CLI trading tool will make it easier for non-UI based traders to execute quickly on dYdX. The general purpose of this grant is to recruit Chaos Labs, a very qualified contributor, to work with dYdX on current and future projects.",
-//     execution:
-//       "3 months to completion. Each individual grant is estimated to take 120 days, but will be worked on concurrently.",
-//     payment_structure: "25% upfront / 75% at completion of all Grants",
-//     beneficiary: [
-//       {
-//         name: "Emem",
-//         image: "😂",
-//       },
-//       {
-//         name: "Chioma",
-//         image: "😊",
-//       },
-//       {
-//         name: "Efa",
-//         image: "😎",
-//       },
-//     ],
-//   },
-// ];
 
 const projectsFunded = [
   {
@@ -347,15 +47,15 @@ const projectsFunded = [
     beneficiary: [
       {
         name: "Alice",
-        image: "👩‍💼",
-      },
-      {
-        name: "Bob",
-        image: "👨‍💼",
-      },
-      {
-        name: "Charlie",
-        image: "👨‍💼",
+        image: grantee,
+        about:
+          "This is a placeholder about me text for the grantee. you can find links to the person/company's social profiles, Github, and website. Also, all projects submitted for grant/sponsorship by the this grantee are hightlighted below.",
+        links: [
+          { url: "#", title: "Twitter", icon: twitterIcon },
+          { url: "#", title: "LinkedIn", icon: linkedInIcon },
+          { url: "#", title: "GitHub", icon: githubIcon },
+          { url: "#", title: "Website", icon: websiteIcon },
+        ],
       },
     ],
   },
@@ -376,14 +76,14 @@ const projectsFunded = [
     beneficiary: [
       {
         name: "GoldenAge Connections",
-        image: "👵👴",
+        image: grantee1,
         about:
           "This is a placeholder about me text for the grantee. you can find links to the person/company's social profiles, Github, and website. Also, all projects submitted for grant/sponsorship by the this grantee are hightlighted below.",
         links: [
-          { twitter: "#" },
-          { linkedIn: "#" },
-          { Github: "#" },
-          { website: "#" },
+          { url: "#", title: "Twitter", icon: twitterIcon },
+          { url: "#", title: "LinkedIn", icon: linkedInIcon },
+          { url: "#", title: "GitHub", icon: githubIcon },
+          { url: "#", title: "Website", icon: websiteIcon },
         ],
       },
     ],
@@ -405,7 +105,15 @@ const projectsFunded = [
     beneficiary: [
       {
         name: "EcoTech Solutions",
-        image: "🌱",
+        image: grantee,
+        about:
+          "This is a placeholder about me text for the grantee. you can find links to the person/company's social profiles, Github, and website. Also, all projects submitted for grant/sponsorship by the this grantee are hightlighted below.",
+        links: [
+          { url: "#", title: "Twitter", icon: twitterIcon },
+          { url: "#", title: "LinkedIn", icon: linkedInIcon },
+          { url: "#", title: "GitHub", icon: githubIcon },
+          { url: "#", title: "Website", icon: websiteIcon },
+        ],
       },
     ],
   },
@@ -426,7 +134,15 @@ const projectsFunded = [
     beneficiary: [
       {
         name: "BrightHorizon Education Foundation",
-        image: "📚",
+        image: grantee2,
+        about:
+          "This is a placeholder about me text for the grantee. you can find links to the person/company's social profiles, Github, and website. Also, all projects submitted for grant/sponsorship by the this grantee are hightlighted below.",
+        links: [
+          { url: "#", title: "Twitter", icon: twitterIcon },
+          { url: "#", title: "LinkedIn", icon: linkedInIcon },
+          { url: "#", title: "GitHub", icon: githubIcon },
+          { url: "#", title: "Website", icon: websiteIcon },
+        ],
       },
     ],
   },
@@ -446,7 +162,15 @@ const projectsFunded = [
     beneficiary: [
       {
         name: "EduVR Innovations",
-        image: "🎓",
+        image: grantee,
+        about:
+          "This is a placeholder about me text for the grantee. you can find links to the person/company's social profiles, Github, and website. Also, all projects submitted for grant/sponsorship by the this grantee are hightlighted below.",
+        links: [
+          { url: "#", title: "Twitter", icon: twitterIcon },
+          { url: "#", title: "LinkedIn", icon: linkedInIcon },
+          { url: "#", title: "GitHub", icon: githubIcon },
+          { url: "#", title: "Website", icon: websiteIcon },
+        ],
       },
     ],
   },
@@ -466,7 +190,15 @@ const projectsFunded = [
     beneficiary: [
       {
         name: "HealthLink Innovations",
-        image: "🏥",
+        image: grantee2,
+        about:
+          "This is a placeholder about me text for the grantee. you can find links to the person/company's social profiles, Github, and website. Also, all projects submitted for grant/sponsorship by the this grantee are hightlighted below.",
+        links: [
+          { url: "#", title: "Twitter", icon: twitterIcon },
+          { url: "#", title: "LinkedIn", icon: linkedInIcon },
+          { url: "#", title: "GitHub", icon: githubIcon },
+          { url: "#", title: "Website", icon: websiteIcon },
+        ],
       },
     ],
   },
@@ -487,7 +219,15 @@ const projectsFunded = [
     beneficiary: [
       {
         name: "PureFlow Foundation",
-        image: "💧",
+        image: grantee,
+        about:
+          "This is a placeholder about me text for the grantee. you can find links to the person/company's social profiles, Github, and website. Also, all projects submitted for grant/sponsorship by the this grantee are hightlighted below.",
+        links: [
+          { url: "#", title: "Twitter", icon: twitterIcon },
+          { url: "#", title: "LinkedIn", icon: linkedInIcon },
+          { url: "#", title: "GitHub", icon: githubIcon },
+          { url: "#", title: "Website", icon: websiteIcon },
+        ],
       },
     ],
   },
@@ -508,7 +248,15 @@ const projectsFunded = [
     beneficiary: [
       {
         name: "GreenHarvest Foundation",
-        image: "🌿",
+        image: grantee2,
+        about:
+          "This is a placeholder about me text for the grantee. you can find links to the person/company's social profiles, Github, and website. Also, all projects submitted for grant/sponsorship by the this grantee are hightlighted below.",
+        links: [
+          { url: "#", title: "Twitter", icon: twitterIcon },
+          { url: "#", title: "LinkedIn", icon: linkedInIcon },
+          { url: "#", title: "GitHub", icon: githubIcon },
+          { url: "#", title: "Website", icon: websiteIcon },
+        ],
       },
     ],
   },
@@ -528,8 +276,16 @@ const projectsFunded = [
       "Payment: Staged payments aligned with key development milestones",
     beneficiary: [
       {
-        name: "LingoTech Labs",
-        image: "🗣️",
+        name: "EduVR Innovations",
+        image: grantee,
+        about:
+          "This is a placeholder about me text for the grantee. you can find links to the person/company's social profiles, Github, and website. Also, all projects submitted for grant/sponsorship by the this grantee are hightlighted below.",
+        links: [
+          { url: "#", title: "Twitter", icon: twitterIcon },
+          { url: "#", title: "LinkedIn", icon: linkedInIcon },
+          { url: "#", title: "GitHub", icon: githubIcon },
+          { url: "#", title: "Website", icon: websiteIcon },
+        ],
       },
     ],
   },
@@ -550,7 +306,15 @@ const projectsFunded = [
     beneficiary: [
       {
         name: "MindWellness Hub",
-        image: "🧠",
+        image: grantee1,
+        about:
+          "This is a placeholder about me text for the grantee. you can find links to the person/company's social profiles, Github, and website. Also, all projects submitted for grant/sponsorship by the this grantee are hightlighted below.",
+        links: [
+          { url: "#", title: "Twitter", icon: twitterIcon },
+          { url: "#", title: "LinkedIn", icon: linkedInIcon },
+          { url: "#", title: "GitHub", icon: githubIcon },
+          { url: "#", title: "Website", icon: websiteIcon },
+        ],
       },
     ],
   },
@@ -571,19 +335,27 @@ const projectsFunded = [
     beneficiary: [
       {
         name: "EcoEnergy Solutions",
-        image: "⚡",
+        image: grantee,
+        about:
+          "This is a placeholder about me text for the grantee. you can find links to the person/company's social profiles, Github, and website. Also, all projects submitted for grant/sponsorship by the this grantee are hightlighted below.",
+        links: [
+          { url: "#", title: "Twitter", icon: twitterIcon },
+          { url: "#", title: "LinkedIn", icon: linkedInIcon },
+          { url: "#", title: "GitHub", icon: githubIcon },
+          { url: "#", title: "Website", icon: websiteIcon },
+        ],
       },
     ],
   },
 ];
 
-const sectionDescription = {
+const projectsFundedIntro = {
   description:
     "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it",
   heading: "Projects built with grants",
   linkText: "View all funded projects",
   linkImg: rightColor,
-  link: "/",
+  link: "/funded-grants",
 };
 
 const whatsNewIntro = {
@@ -592,7 +364,7 @@ const whatsNewIntro = {
   heading: "What's new?",
   linkText: "Read more on our blog",
   linkImg: rightColor,
-  link: "/",
+  link: "/blog",
 };
 
 const faqIntro = {
@@ -607,7 +379,7 @@ const appProcessIntro = {
     "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy",
 };
 
-const whatsNewCardData = [
+const blogData = [
   {
     fRound: "Funding round",
     title: "Round 9",
@@ -761,7 +533,7 @@ export {
   appProcessIntro,
   faqData,
   faqIntro,
-  whatsNewCardData,
+  blogData,
   whatsNewIntro,
-  sectionDescription,
+  projectsFundedIntro,
 };

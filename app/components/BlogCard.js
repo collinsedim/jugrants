@@ -8,7 +8,7 @@ const mono = Oxygen_Mono({
   variable: "--font-mono",
 });
 
-const WhatsNewCard = ({ fRound, title, titleBreak, date, titleFull }) => {
+const BlogCard = ({ fRound, title, titleBreak, date, titleFull }) => {
   return (
     <motion.div
       whileTap={{ scale: 0.9 }}
@@ -43,4 +43,4 @@ const WhatsNewCard = ({ fRound, title, titleBreak, date, titleFull }) => {
   );
 };
 
-export default WhatsNewCard;
+export default BlogCard;

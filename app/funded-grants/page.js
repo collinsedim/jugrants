@@ -3,7 +3,6 @@ import { useState } from "react";
 import Link from "next/link";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css/bundle";
-import { FreeMode, Pagination, Navigation } from "swiper/modules";
 
 import onButton from "public/assets/on-button.png";
 import offButton from "public/assets/off-button.png";
