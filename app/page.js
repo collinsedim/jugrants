@@ -124,7 +124,7 @@ export default function Home() {
         <SectionIntro {...whatsNewIntro} />
         <div className="flex justify-center">
           <div className="mt-14 flex md:flex-row flex-col gap-8 sm:px-0 px-6 max-w-[800px] ">
-            {blogData.map((blog) => (
+            {blogData.slice(0, 2).map((blog) => (
               <BlogCard key={blog.title} {...blog} />
             ))}
           </div>

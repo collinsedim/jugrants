@@ -34,6 +34,7 @@ const projectsFunded = [
   {
     title: "HR Management Software",
     status: "Funded",
+    fundingRound: 9,
     category: "Technology",
     startAmount: "$20,000",
     endAmount: "$25,000",
@@ -62,6 +63,7 @@ const projectsFunded = [
   {
     title: "Elderly Care Network",
     status: "Completed",
+    fundingRound: 8,
     category: "Social Services",
     startAmount: "$18,000",
     endAmount: "$22,000",
@@ -91,6 +93,7 @@ const projectsFunded = [
   {
     title: "Eco-Friendly Packaging Solution",
     status: "Open",
+    fundingRound: 7,
     category: "Environmental",
     startAmount: "$10,000",
     endAmount: "$15,000",
@@ -120,6 +123,7 @@ const projectsFunded = [
   {
     title: "Rural Education Enhancement",
     status: "Completed",
+    fundingRound: 8,
     category: "Education",
     startAmount: "$24,000",
     endAmount: "$30,000",
@@ -149,6 +153,7 @@ const projectsFunded = [
   {
     title: "Educational Virtual Reality Platform",
     status: "Funded",
+    fundingRound: 9,
     category: "Education",
     startAmount: "$30,000",
     endAmount: "$40,000",
@@ -177,6 +182,7 @@ const projectsFunded = [
   {
     title: "Healthcare Accessibility App",
     status: "Open",
+    fundingRound: 7,
     category: "Healthcare",
     startAmount: "$15,000",
     endAmount: "$20,000",
@@ -205,6 +211,7 @@ const projectsFunded = [
   {
     title: "Clean Water Initiative",
     status: "Completed",
+    fundingRound: 8,
     category: "Environment",
     startAmount: "$12,000",
     endAmount: "$15,000",
@@ -234,6 +241,7 @@ const projectsFunded = [
   {
     title: "Community Garden Initiative",
     status: "Funded",
+    fundingRound: 9,
     category: "Community",
     startAmount: "$5,000",
     endAmount: "$8,000",
@@ -263,6 +271,7 @@ const projectsFunded = [
   {
     title: "AI-Powered Language Learning",
     status: "Open",
+    fundingRound: 7,
     category: "Education",
     startAmount: "$25,000",
     endAmount: "$35,000",
@@ -292,6 +301,7 @@ const projectsFunded = [
   {
     title: "Digital Mental Health Platform",
     status: "Funded",
+    fundingRound: 9,
     category: "Healthcare",
     startAmount: "$30,000",
     endAmount: "$45,000",
@@ -321,6 +331,7 @@ const projectsFunded = [
   {
     title: "Sustainable Energy Innovations",
     status: "Open",
+    fundingRound: 7,
     category: "Environmental",
     startAmount: "$50,000",
     endAmount: "$70,000",
@@ -381,17 +392,67 @@ const appProcessIntro = {
 
 const blogData = [
   {
-    fRound: "Funding round",
-    title: "Round 9",
-    titleBreak: "of approvals",
-    titleFull: "Round 9 of approvals",
+    category: "Spotlight",
+    blogRound: 10,
+    description:
+      "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).",
+    title: "Round 10 of approvals",
+    date: "August 2, 2023",
+  },
+  {
+    category: "Funding round",
+    blogRound: 9,
+    description:
+      "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).",
+    title: "Round 9 of approvals",
     date: "August 6, 2023",
   },
   {
-    fRound: "Funding round",
-    title: "Round 8",
-    titleBreak: "of approvals",
-    titleFull: "Round 8 of approvals",
+    category: "Funding round",
+    blogRound: 8,
+    description:
+      "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).",
+    title: "Round 8 of approvals",
+    date: "August 2, 2023",
+  },
+  {
+    category: "News & updates",
+    blogRound: 7,
+    description:
+      "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).",
+    title: "Round 7 of approvals",
+    date: "August 2, 2023",
+  },
+  {
+    category: "Spotlight",
+    blogRound: 6,
+    description:
+      "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).",
+    title: "Round 6 of approvals",
+    date: "August 2, 2023",
+  },
+  {
+    category: "News & updates",
+    blogRound: 5,
+    description:
+      "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).",
+    title: "Round 5 of approvals",
+    date: "August 2, 2023",
+  },
+  {
+    category: "Funding round",
+    blogRound: 4,
+    description:
+      "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).",
+    title: "Round 4 of approvals",
+    date: "August 6, 2023",
+  },
+  {
+    category: "Spotlight",
+    blogRound: 3,
+    description:
+      "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).",
+    title: "Round 3 of approvals",
     date: "August 2, 2023",
   },
 ];

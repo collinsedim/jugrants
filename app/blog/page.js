@@ -16,6 +16,7 @@ const blogCategory = [
 ];
 
 const Blog = () => {
+  const [page, setPage] = useState(1);
   const [active, setActive] = useState("latest");
 
   return (
@@ -44,10 +45,32 @@ const Blog = () => {
           ))}
         </ul>
       </div>
-      <div className="mt-10">
-        {blogData.map((blog) => (
-          <BlogCard key={blog.title} {...blog} />
-        ))}
+      <div className="flex justify-center">
+        <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 gap-5">
+          {blogData
+            .slice(0, page * 6)
+            .map((blog) =>
+              active === blog.category ? (
+                <BlogCard key={blog.title} {...blog} />
+              ) : (
+                active === "latest" && <BlogCard key={blog.title} {...blog} />
+              )
+            )}
+        </div>
+      </div>
+      <div className=" text-center mt-16">
+        {page * 6 <= blogData.length ? (
+          <button
+            onClick={() => setPage((prev) => prev + 1)}
+            className="bg-bgSecondary px-4 py-2 rounded-xl"
+          >
+            Load more posts
+          </button>
+        ) : (
+          <div className="bg-slate-800/80 p-2 font-semibold">
+            No more posts to show!
+          </div>
+        )}
       </div>
     </div>
   );

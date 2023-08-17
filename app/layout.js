@@ -10,6 +10,7 @@ import "pattern.css";
 import Button from "./components/Button";
 import { headerMenu, footerMenu, socialProfiles } from "./components/data/data";
 import { GrantsProvider } from "./providers/GrantsProvider";
+import { BlogProvider } from "./providers/BlogProvider";
 
 import open from "/public/assets/open.png";
 import close from "/public/assets/close.png";
@@ -99,7 +100,7 @@ export default function RootLayout({ children }) {
                   <div className="flex lg:block items-center gap-5">
                     <Button
                       buttonBgColor="bg-bgButton"
-                      buttonLocation="/grants-application"
+                      buttonLocation="/apply"
                       buttonName="Apply"
                       buttonNameSpan="for grant"
                     />
@@ -154,7 +155,9 @@ export default function RootLayout({ children }) {
             {/* Header */}
             {/* Main Content */}
             <GrantsProvider>
-              <main className="mt-32 sm:px-5 px-3">{children}</main>
+              <BlogProvider>
+                <main className="mt-32 sm:px-5 px-3">{children}</main>
+              </BlogProvider>
             </GrantsProvider>
             {/* Main Content */}
             {/* Footer section */}
