@@ -56,11 +56,11 @@ export default function Home() {
         <div className="flex justify-center sm:gap-7 gap-5 mt-10 sm:mb-32 mb-12">
           <Button
             buttonBgColor="bg-bgSecondary"
-            buttonLocation="/"
+            buttonLocation="/discover-initiatives"
             buttonName="Discover RFPs"
           />
           <Button
-            buttonLocation="/"
+            buttonLocation="/apply"
             buttonBgColor="bg-bgButton"
             buttonName="Apply for grant"
             buttonImg={right}

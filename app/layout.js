@@ -39,10 +39,10 @@ const libreBaskerville = Libre_Baskerville({
   variable: "--font-basker",
 });
 
-export const metadata = {
-  title: "JuGrants",
-  description: "Let's help fund that great business/idea you have!",
-};
+// export const metadata = {
+//   title: "JuGrants",
+//   description: "Let's help fund that great business/idea you have!",
+// };
 
 const siteSocials = socialProfiles.map((profile, index) => (
   <Link key={index} href="#">

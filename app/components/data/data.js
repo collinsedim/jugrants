@@ -30,6 +30,30 @@ const grantsSummary = [
   },
 ];
 
+const projectCategories = [
+  {
+    name: "Technology",
+  },
+  {
+    name: "Social Services",
+  },
+  {
+    name: "Education",
+  },
+  {
+    name: "Healthcare",
+  },
+  {
+    name: "Environment",
+  },
+  {
+    name: "Community",
+  },
+  {
+    name: "Other",
+  },
+];
+
 const projectsFunded = [
   {
     title: "HR Management Software",
@@ -94,15 +118,15 @@ const projectsFunded = [
     title: "Eco-Friendly Packaging Solution",
     status: "Open",
     fundingRound: 7,
-    category: "Environmental",
+    category: "Environment",
     startAmount: "$10,000",
     endAmount: "$15,000",
     description:
-      "Create innovative and sustainable packaging alternatives for businesses. Reduce waste and environmental impact by developing biodegradable and reusable packaging materials.",
+      "Create innovative and sustainable packaging alternatives for businesses. Reduce waste and environment impact by developing biodegradable and reusable packaging materials.",
     purpose:
       "This project aims to revolutionize the packaging industry by providing eco-friendly options that align with sustainability goals. The solution will benefit both businesses and the planet.",
     execution:
-      "Expected completion within 8 months, including material research, prototyping, and production trials. Regular consultations with environmental experts for best practices.",
+      "Expected completion within 8 months, including material research, prototyping, and production trials. Regular consultations with environment experts for best practices.",
     payment_structure:
       "Payment: Milestone-based with a focus on successful prototypes",
     beneficiary: [
@@ -248,7 +272,7 @@ const projectsFunded = [
     description:
       "Establish community gardens in urban areas to promote sustainable agriculture and provide fresh produce to residents. Develop educational programs and workshops for garden maintenance.",
     purpose:
-      "The community garden initiative aims to create green spaces in cities, fostering local food production, community engagement, and environmental awareness.",
+      "The community garden initiative aims to create green spaces in cities, fostering local food production, community engagement, and environment awareness.",
     execution:
       "Envisioned completion within 6 months, including garden setup, planting, and educational program development. Work closely with local organizations and residents for successful implementation.",
     payment_structure:
@@ -332,13 +356,13 @@ const projectsFunded = [
     title: "Sustainable Energy Innovations",
     status: "Open",
     fundingRound: 7,
-    category: "Environmental",
+    category: "Environment",
     startAmount: "$50,000",
     endAmount: "$70,000",
     description:
       "Research and develop innovative solutions for sustainable energy generation, storage, and distribution. Contribute to the transition to renewable energy sources and reduction of carbon emissions.",
     purpose:
-      "The sustainable energy innovations project aims to accelerate the adoption of clean energy technologies, driving environmental conservation and reducing dependence on fossil fuels.",
+      "The sustainable energy innovations project aims to accelerate the adoption of clean energy technologies, driving environment conservation and reducing dependence on fossil fuels.",
     execution:
       "Expected completion in 18 months, including research, prototyping, and testing of energy solutions. Collaboration with energy experts and regulatory bodies for successful integration.",
     payment_structure:
@@ -597,4 +621,5 @@ export {
   blogData,
   whatsNewIntro,
   projectsFundedIntro,
+  projectCategories,
 };
