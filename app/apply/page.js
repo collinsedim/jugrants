@@ -1,6 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
 import Accordion from "../components/Accordion";
+import Image from "next/image";
 
 import { projectCategories } from "../components/data/data";
 
@@ -39,6 +40,8 @@ const GrantApplication = () => {
   const [state, setState] = useState({
     name: "",
     email: "",
+    phone: "",
+    photo: null,
     aboutYou: "",
     additional_links: {
       twitter: "",
@@ -75,34 +78,54 @@ const GrantApplication = () => {
 
   const [expanded, setExpanded] = useState();
   const [submitting, setSubmitting] = useState(false);
+  const [selectedImage, setSelectedImage] = useState(null);
+  // const [newImageURL, setNewImageURL] = useState(null);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     setSubmitting(true);
 
-    console.log(state);
+    // handle image upload
+    try {
+      if (!state.photo) return;
+
+      const formData = new FormData();
+      formData.append("myImage", state.photo);
+      const { data } = await fetch("/api/image-upload", {
+        method: "POST",
+        body: formData,
+      });
+      console.log(formData);
+    } catch (error) {
+      console.error("Could not upload image", error);
+    }
+    // end handle image upload
+
+    // console.log(state);
 
     setSubmitting(false);
 
-    setState({
-      name: "",
-      email: "",
-      aboutYou: "",
-      additional_links: {
-        twitter: "",
-        website: "",
-        github: "",
-        linkedIn: "",
-      },
-      title: "",
-      description: "",
-      category: "",
-      purpose: "",
-      execution: "",
-      startAmount: "",
-      endAmount: "",
-    });
+    // setState({
+    //   name: "",
+    //   email: "",
+    //   phone: "",
+    //   photo: null,
+    //   aboutYou: "",
+    //   additional_links: {
+    //     twitter: "",
+    //     website: "",
+    //     github: "",
+    //     linkedIn: "",
+    //   },
+    //   title: "",
+    //   description: "",
+    //   category: "",
+    //   purpose: "",
+    //   execution: "",
+    //   startAmount: "",
+    //   endAmount: "",
+    // });
   };
 
   const handleChange = (e, field, linkName) => {
@@ -113,6 +136,33 @@ const GrantApplication = () => {
           ? { ...prevState[field], [linkName]: e.target.value }
           : e.target.value,
     }));
+  };
+
+  const handleImageChange = async () => {
+    try {
+      if (!state.photo) return;
+
+      const formData = new FormData();
+      formData.append("myImage", state.photo);
+      const { data } = await fetch("/api/image-upload", {
+        method: "POST",
+        body: formData,
+      });
+      console.log(data);
+    } catch (error) {
+      console.error("Could not upload image", error);
+    }
+  };
+
+  const handleFileChange = (e) => {
+    if (e.target.files) {
+      const file = e.target.files[0];
+      if (file) {
+        setSelectedImage(URL.createObjectURL(file));
+
+        setState({ ...state, photo: file });
+      }
+    }
   };
 
   return (
@@ -146,7 +196,11 @@ const GrantApplication = () => {
       {/* Grants selection criteria */}
       <h2 className="text-2xl font-bold mt-16">Grant application</h2>
       <div className="w-full bg-slate-100 text-slate-900 mt-5 rounded-md py-14 px-5">
-        <form className="max-w-xl mx-auto" onSubmit={handleSubmit}>
+        <form
+          encType="multipart/form-data"
+          className="max-w-xl mx-auto"
+          onSubmit={handleSubmit}
+        >
           <fieldset className="mb-8">
             <label htmlFor="name" className="mb-3 block font-semibold">
               Name <span className="text-red-500">*</span>
@@ -174,6 +228,21 @@ const GrantApplication = () => {
               value={state.email}
               required
               onChange={(e) => handleChange(e, "email")}
+            />
+          </fieldset>
+          <fieldset className="mb-8">
+            <label htmlFor="phone" className="mb-1 block font-semibold">
+              Phone <span className="text-red-500">*</span>
+            </label>
+            <p className="mb-3 text-sm">Must include country/dialing code</p>
+            <input
+              className="p-2 w-full outline-slate-500 border-2 border-gray-300 rounded-md"
+              type="text"
+              id="phone"
+              min="8"
+              value={state.phone}
+              required
+              onChange={(e) => handleChange(e, "phone")}
             />
           </fieldset>
           <fieldset className="mb-8">
@@ -234,6 +303,35 @@ const GrantApplication = () => {
               onChange={(e) => handleChange(e, "additional_links", "linkedIn")}
             />
           </fieldset>
+          <fieldset className="mb-8">
+            <label>
+              <input type="file" hidden onChange={handleFileChange} />
+              <div className="w-full bg-gray-300 aspect-video rounded border-2 border-dashed cursor-pointer flex justify-center items-center">
+                {selectedImage ? (
+                  <div>
+                    <img
+                      className="max-h-96"
+                      src={selectedImage}
+                      alt={state.name}
+                    />
+                  </div>
+                ) : (
+                  <span className="font-bold">
+                    Select Image <span className="text-red-500">*</span>
+                  </span>
+                )}
+              </div>
+            </label>
+            {/* {selectedImage && (
+              <p
+                onClick={() => {
+                  setSelectedImage(null);
+                }}
+              >
+                Remove image
+              </p>
+            )} */}
+          </fieldset>
           <hr className="mb-8" />
           <fieldset className="mb-8">
             <label htmlFor="title" className="mb-3 block font-semibold">
@@ -274,7 +372,7 @@ const GrantApplication = () => {
               className="p-2 w-full outline-slate-500 border-2 border-gray-300 rounded-md"
               id="category"
               required
-              value={!state.category === "select category" && state.category}
+              value={state.category}
               onChange={(e) => handleChange(e, "category")}
             >
               <option className="text-gray-400">select category</option>
@@ -343,6 +441,7 @@ const GrantApplication = () => {
           </fieldset>
           <div className="text-center">
             <button
+              disabled={submitting}
               className="bg-bgButton rounded-md px-7 py-2 font-bold text-white hover:scale-105 duration-150"
               type="submit"
             >

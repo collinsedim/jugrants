@@ -176,7 +176,7 @@ export default function RootLayout({ children }) {
                           <Button
                             buttonBgColor="bg-white"
                             buttonName="Apply for grant"
-                            buttonLocation="#"
+                            buttonLocation="/apply"
                             textColor="text-bgButton"
                             buttonImg={rightColor}
                           />

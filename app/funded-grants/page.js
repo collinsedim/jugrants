@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css/bundle";
 
@@ -8,6 +8,7 @@ import offButton from "public/assets/off-button.png";
 import { projectsFunded } from "../components/data/data";
 import Card from "../components/Card";
 import Image from "next/image";
+// import axios from "axios";
 
 const FundedGrants = () => {
   const [active, setActive] = useState("all");
@@ -22,6 +23,19 @@ const FundedGrants = () => {
   const completedFilteredProjects = filteredProjects.filter(
     (project) => !showCompleted || project.status.toLowerCase() === "completed"
   );
+
+  // const getCategories = async () => {
+  //   const res = await fetch("/api/categories", {
+  //     method: "GET",
+  //   });
+  //   const data = await res.json();
+
+  //   console.log(data);
+  // };
+
+  // useEffect(() => {
+  //   getCategories();
+  // }, []);
 
   return (
     <div className="max-w-7xl mx-auto">

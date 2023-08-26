@@ -1,15 +1,31 @@
-// pages/api/users.js
+import { PrismaClient } from "@prisma/client";
+const prisma = new PrismaClient();
 
-const usersData = [
-  { id: 1, name: "User 1" },
-  { id: 2, name: "User 2" },
-  { id: 3, name: "User 3" },
-];
+export const GET = async () => {
+  try {
+    const grantee = await prisma.grantee.findMany();
 
-export default function getUsers(req, res) {
-  if (req.method === "GET") {
-    res.status(200).json(usersData);
-  } else {
-    res.status(405).end(); // Method Not Allowed
+    if (grantee.length === 0) {
+      return new Response(JSON.stringify({ message: "No Grantee found" }), {
+        status: 404,
+      });
+    }
+
+    return new Response(JSON.stringify(grantee), { status: 200 });
+  } catch (error) {
+    return new Response(
+      JSON.stringify(
+        { message: "Something went wrong brother, retry!" },
+        error
+      ),
+      {
+        status: 400,
+      }
+    );
   }
-}
+};
+
+export const POST = async (data) => {
+  const grantee = await prisma.grantee.create(data);
+  return new Response(JSON.stringify(grantee), { status: 200 });
+};
