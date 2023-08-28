@@ -77,30 +77,30 @@ export const DELETE = async (req) => {
 };
 
 // update status name not working
-// export const PATCH = async (req) => {
-//   const { id, title } = await req.json();
+export const PATCH = async (req) => {
+  const { id, title } = await req.json();
 
-//   const fundingStatus = await prisma.fundingStatus.findFirst({
-//     where: { id: id },
-//   });
+  const fundingStatus = await prisma.fundingStatus.findFirst({
+    where: { id: id },
+  });
 
-//   if (fundingStatus.title === title)
-//     return new Response(JSON.stringify({ message: "No changes made" }), {
-//       status: 201,
-//     });
+  if (fundingStatus.title === title)
+    return new Response(JSON.stringify({ message: "No changes made" }), {
+      status: 201,
+    });
 
-//   if (fundingStatus !== null) {
-//     const updatedFundingStatus = await prisma.fundingStatus.update({
-//       where: { id: id },
-//       data: {
-//         title: title,
-//       },
-//     });
+  if (fundingStatus !== null) {
+    const updatedFundingStatus = await prisma.fundingStatus.update({
+      where: { id: id },
+      data: {
+        title: title,
+      },
+    });
 
-//     return new Response(JSON.stringify(updatedFundingStatus), { status: 200 });
-//   }
+    return new Response(JSON.stringify(updatedFundingStatus), { status: 200 });
+  }
 
-//   return new Response(JSON.stringify({ message: "Status does not exist" }), {
-//     status: 404,
-//   });
-// };
+  return new Response(JSON.stringify({ message: "Status does not exist" }), {
+    status: 404,
+  });
+};

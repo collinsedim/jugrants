@@ -1,6 +1,10 @@
 // import formidable from "formidable";
 import path from "path";
 import fs from "fs/promises";
+// import { PrismaClient } from "@prisma/client";
+// const prisma = new PrismaClient();
+
+import { prisma } from "../../../lib/prisma";
 
 export const POST = async (req) => {
   const imageData = await req.formData();
@@ -30,6 +34,13 @@ export const POST = async (req) => {
     const imgURL = filePath.replace(process.cwd(), "").replaceAll("\\", "/");
 
     // console.log(JSON.stringify(imgURL));
+
+    // save file url as string to database
+    const saveImage = await prisma.grantee.create({ data: { photo: imgURL } });
+
+    return new Response(JSON.stringify(saveImage.photo));
+    // end save file url as string to database
+
     return new Response(
       JSON.stringify({ message: "Image upload success", fileLink: imgURL }),
       {
@@ -39,8 +50,17 @@ export const POST = async (req) => {
   } catch (error) {
     console.log("Failed to upload file.", error);
     return new Response(
-      JSON.stringify({ message: "File could not be uploaded, retry" }),
+      JSON.stringify({
+        message: "File could not be uploaded, retry",
+        reason: error,
+      }),
       { status: 500 }
     );
   }
+};
+
+export const GET = async () => {
+  const userPhotos = await prisma.grantee.findMany();
+
+  console.log(JSON.stringify(userPhotos.photo));
 };

@@ -37,18 +37,19 @@ const grantCriteria = [
 ];
 
 const GrantApplication = () => {
-  const [state, setState] = useState({
+  const [granteeData, setGranteeData] = useState({
     name: "",
     email: "",
     phone: "",
     photo: null,
-    aboutYou: "",
-    additional_links: {
-      twitter: "",
-      website: "",
-      github: "",
-      linkedIn: "",
-    },
+    about: "",
+    twitter: "",
+    website: "",
+    github: "",
+    linkedin: "",
+  });
+
+  const [projectData, setProjectData] = useState({
     title: "",
     description: "",
     category: "",
@@ -56,113 +57,100 @@ const GrantApplication = () => {
     execution: "",
     startAmount: "",
     endAmount: "",
+    projectId: "",
   });
 
-  // const [tempUsers, setTempUsers] = useState([]);
+  const {
+    name,
+    email,
+    phone,
+    photo,
+    about,
+    website,
+    linkedin,
+    github,
+    twitter,
+  } = granteeData;
 
-  // const fetchUsers = async () => {
-  //   try {
-  //     const response = await fetch("/api/users", { method: "GET" });
-  //     const data = await response.json();
-  //     setTempUsers(data);
-  //   } catch (error) {
-  //     console.log("Unable to fetch users");
-  //   }
-  // };
-
-  // useEffect(() => {
-  //   fetchUsers();
-  // }, []);
-
-  // console.log(tempUsers);
+  const {
+    title,
+    description,
+    category,
+    purpose,
+    execution,
+    startAmount,
+    endAmount,
+  } = projectData;
 
   const [expanded, setExpanded] = useState();
   const [submitting, setSubmitting] = useState(false);
   const [selectedImage, setSelectedImage] = useState(null);
-  // const [newImageURL, setNewImageURL] = useState(null);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     setSubmitting(true);
 
-    // handle image upload
-    try {
-      if (!state.photo) return;
+    // Create FormData for image upload
+    const granteeFormData = new FormData();
+    granteeFormData.append("myImage", photo);
+    granteeFormData.append("name", name);
+    granteeFormData.append("email", email);
+    granteeFormData.append("phone", phone);
+    granteeFormData.append("about", about);
+    granteeFormData.append("website", website);
+    granteeFormData.append("linkedin", linkedin);
+    granteeFormData.append("github", github);
+    granteeFormData.append("twitter", twitter);
 
-      const formData = new FormData();
-      formData.append("myImage", state.photo);
-      const { data } = await fetch("/api/image-upload", {
-        method: "POST",
-        body: formData,
-      });
-      console.log(formData);
-    } catch (error) {
-      console.error("Could not upload image", error);
-    }
-    // end handle image upload
+    // Submit grantee data to /api/users
+    const granteeResponse = await fetch("/api/users", {
+      method: "POST",
+      body: granteeFormData,
+    });
 
-    // console.log(state);
+    // Assuming the grantee API response provides an 'id'
+    const granteeId = await granteeResponse.json(); // Adjust based on your API response
+    console.log(granteeData);
+    // return;
+    // Prepare project data for submission
+    const projectRequestBody = {
+      title,
+      description,
+      category,
+      purpose,
+      execution,
+      startAmount,
+      endAmount,
+      projectId: granteeId, // Assuming this is how you associate the project with the grantee
+    };
+
+    // Submit project data to /api/projectData
+    const projectResponse = await fetch("/api/projects", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(projectRequestBody),
+    });
+
+    console.log("Grantee Response:", granteeResponse);
+    console.log("Project Response:", projectResponse);
 
     setSubmitting(false);
-
-    // setState({
-    //   name: "",
-    //   email: "",
-    //   phone: "",
-    //   photo: null,
-    //   aboutYou: "",
-    //   additional_links: {
-    //     twitter: "",
-    //     website: "",
-    //     github: "",
-    //     linkedIn: "",
-    //   },
-    //   title: "",
-    //   description: "",
-    //   category: "",
-    //   purpose: "",
-    //   execution: "",
-    //   startAmount: "",
-    //   endAmount: "",
-    // });
   };
 
-  const handleChange = (e, field, linkName) => {
-    setState((prevState) => ({
+  const handleGranteeDataChange = (field, value) => {
+    setGranteeData((prevState) => ({
       ...prevState,
-      [field]:
-        field === "additional_links"
-          ? { ...prevState[field], [linkName]: e.target.value }
-          : e.target.value,
+      [field]: value,
     }));
   };
-
-  const handleImageChange = async () => {
-    try {
-      if (!state.photo) return;
-
-      const formData = new FormData();
-      formData.append("myImage", state.photo);
-      const { data } = await fetch("/api/image-upload", {
-        method: "POST",
-        body: formData,
-      });
-      console.log(data);
-    } catch (error) {
-      console.error("Could not upload image", error);
-    }
-  };
-
-  const handleFileChange = (e) => {
-    if (e.target.files) {
-      const file = e.target.files[0];
-      if (file) {
-        setSelectedImage(URL.createObjectURL(file));
-
-        setState({ ...state, photo: file });
-      }
-    }
+  const handleProjectDataChange = (field, value) => {
+    setProjectData((prevState) => ({
+      ...prevState,
+      [field]: value,
+    }));
   };
 
   return (
@@ -209,9 +197,9 @@ const GrantApplication = () => {
               className="p-2 w-full outline-slate-500 border-2 border-gray-300 rounded-md"
               type="text"
               id="name"
-              value={state.name}
+              value={name}
               required
-              onChange={(e) => handleChange(e, "name")}
+              onChange={(e) => handleGranteeDataChange("name", e.target.value)}
             />
           </fieldset>
           <fieldset className="mb-8">
@@ -225,9 +213,9 @@ const GrantApplication = () => {
               className="p-2 w-full outline-slate-500 border-2 border-gray-300 rounded-md"
               type="email"
               id="email"
-              value={state.email}
+              value={email}
               required
-              onChange={(e) => handleChange(e, "email")}
+              onChange={(e) => handleGranteeDataChange("email", e.target.value)}
             />
           </fieldset>
           <fieldset className="mb-8">
@@ -240,9 +228,9 @@ const GrantApplication = () => {
               type="text"
               id="phone"
               min="8"
-              value={state.phone}
+              value={phone}
               required
-              onChange={(e) => handleChange(e, "phone")}
+              onChange={(e) => handleGranteeDataChange("phone", e.target.value)}
             />
           </fieldset>
           <fieldset className="mb-8">
@@ -253,14 +241,14 @@ const GrantApplication = () => {
             <textarea
               className="p-2 w-full outline-slate-500 border-2 border-gray-300 rounded-md resize-none h-28"
               id="about"
-              value={state.aboutYou}
+              value={about}
               required
               placeholder={
-                state.name
-                  ? `Hi ${state.name}, tell us something about yourself. We can't wait to meet you!`
+                name
+                  ? `Hi ${name}, tell us something about yourself. We can't wait to meet you!`
                   : `Hi, tell us something about yourself. We can't wait to meet you!`
               }
-              onChange={(e) => handleChange(e, "aboutYou")}
+              onChange={(e) => handleGranteeDataChange("about", e.target.value)}
             ></textarea>
           </fieldset>
           <fieldset className="mb-8">
@@ -271,48 +259,63 @@ const GrantApplication = () => {
               <span className="text-red-500">https://</span>
             </p>
             <input
-              className="p-2 w-full outline-slate-500 border-2 border-gray-300 rounded-md"
+              className="mb-1 p-2 w-full outline-slate-500 border-2 border-gray-300 rounded-md"
               type="url"
               id="website"
-              value={state.additional_links.website}
+              value={website}
               placeholder="Website"
-              onChange={(e) => handleChange(e, "additional_links", "website")}
+              onChange={(e) =>
+                handleGranteeDataChange("website", e.target.value)
+              }
             />
             <input
-              className="p-2 w-full outline-slate-500 border-2 border-gray-300 rounded-md"
+              className="mb-1 p-2 w-full outline-slate-500 border-2 border-gray-300 rounded-md"
               type="url"
               id="github"
-              value={state.additional_links.github}
+              value={github}
               placeholder="Github"
-              onChange={(e) => handleChange(e, "additional_links", "github")}
+              onChange={(e) =>
+                handleGranteeDataChange("github", e.target.value)
+              }
             />
             <input
-              className="p-2 w-full outline-slate-500 border-2 border-gray-300 rounded-md"
+              className="mb-1 p-2 w-full outline-slate-500 border-2 border-gray-300 rounded-md"
               type="url"
               id="twitter"
-              value={state.additional_links.twitter}
+              value={twitter}
               placeholder="Twitter"
-              onChange={(e) => handleChange(e, "additional_links", "twitter")}
+              onChange={(e) =>
+                handleGranteeDataChange("twitter", e.target.value)
+              }
             />
             <input
               className="p-2 w-full outline-slate-500 border-2 border-gray-300 rounded-md"
               type="url"
               id="linkedIn"
-              value={state.additional_links.linkedIn}
+              value={linkedin}
               placeholder="LinkedIn"
-              onChange={(e) => handleChange(e, "additional_links", "linkedIn")}
+              onChange={(e) =>
+                handleGranteeDataChange("linkedin", e.target.value)
+              }
             />
           </fieldset>
           <fieldset className="mb-8">
             <label>
-              <input type="file" hidden onChange={handleFileChange} />
-              <div className="w-full bg-gray-300 aspect-video rounded border-2 border-dashed cursor-pointer flex justify-center items-center">
+              <input
+                type="file"
+                hidden
+                onChange={(e) => {
+                  handleGranteeDataChange("photo", e.target.files[0]);
+                  setSelectedImage(URL.createObjectURL(e.target.files[0]));
+                }}
+              />
+              <div className="w-full bg-gray-300/30 aspect-video rounded-md border-2 border-dashed cursor-pointer flex justify-center items-center">
                 {selectedImage ? (
                   <div>
                     <img
-                      className="max-h-96"
+                      className="max-h-96 rounded-md my-1"
                       src={selectedImage}
-                      alt={state.name}
+                      alt=""
                     />
                   </div>
                 ) : (
@@ -322,15 +325,6 @@ const GrantApplication = () => {
                 )}
               </div>
             </label>
-            {/* {selectedImage && (
-              <p
-                onClick={() => {
-                  setSelectedImage(null);
-                }}
-              >
-                Remove image
-              </p>
-            )} */}
           </fieldset>
           <hr className="mb-8" />
           <fieldset className="mb-8">
@@ -341,9 +335,9 @@ const GrantApplication = () => {
               className="p-2 w-full outline-slate-500 border-2 border-gray-300 rounded-md"
               type="text"
               id="title"
-              value={state.title}
+              value={title}
               required
-              onChange={(e) => handleChange(e, "title")}
+              onChange={(e) => handleProjectDataChange("title", e.target.value)}
             />
           </fieldset>
           <fieldset className="mb-8">
@@ -354,14 +348,16 @@ const GrantApplication = () => {
             <textarea
               className="p-2 w-full outline-slate-500 border-2 border-gray-300 rounded-md resize-none h-28"
               id="description"
-              value={state.description}
+              value={description}
               required
               placeholder={
-                state.title
-                  ? `${state.title} is a project about...`
+                title
+                  ? `${title} is a project about...`
                   : `Tell us about your project!`
               }
-              onChange={(e) => handleChange(e, "description")}
+              onChange={(e) =>
+                handleProjectDataChange("description", e.target.value)
+              }
             ></textarea>
           </fieldset>
           <fieldset className="mb-8">
@@ -372,8 +368,10 @@ const GrantApplication = () => {
               className="p-2 w-full outline-slate-500 border-2 border-gray-300 rounded-md"
               id="category"
               required
-              value={state.category}
-              onChange={(e) => handleChange(e, "category")}
+              value={category}
+              onChange={(e) =>
+                handleProjectDataChange("category", e.target.value)
+              }
             >
               <option className="text-gray-400">select category</option>
               {projectCategories.map((category) => (
@@ -392,19 +390,23 @@ const GrantApplication = () => {
                 className="p-2 outline-slate-500 border-2 border-gray-300 rounded-md w-full"
                 type="text"
                 id="startAmount"
-                value={state.startAmount}
+                value={startAmount}
                 required
                 placeholder="min (e.g, $45,000)"
-                onChange={(e) => handleChange(e, "startAmount")}
+                onChange={(e) =>
+                  handleProjectDataChange("startAmount", e.target.value)
+                }
               />
               <input
                 className="p-2 outline-slate-500 border-2 border-gray-300 rounded-md w-full"
                 type="text"
                 id="endAmount"
-                value={state.endAmount}
+                value={endAmount}
                 required
                 placeholder="max (e.g, $96,000)"
-                onChange={(e) => handleChange(e, "endAmount")}
+                onChange={(e) =>
+                  handleProjectDataChange("endAmount", e.target.value)
+                }
               />
             </div>
           </fieldset>
@@ -418,9 +420,11 @@ const GrantApplication = () => {
             <textarea
               className="p-2 w-full outline-slate-500 border-2 border-gray-300 rounded-md resize-none h-28"
               id="purpose"
-              value={state.purpose}
+              value={purpose}
               required
-              onChange={(e) => handleChange(e, "purpose")}
+              onChange={(e) =>
+                handleProjectDataChange("purpose", e.target.value)
+              }
             ></textarea>
           </fieldset>
           <fieldset className="mb-8">
@@ -434,9 +438,11 @@ const GrantApplication = () => {
             <textarea
               className="p-2 w-full outline-slate-500 border-2 border-gray-300 rounded-md resize-none h-28"
               id="execution"
-              value={state.execution}
+              value={execution}
               required
-              onChange={(e) => handleChange(e, "execution")}
+              onChange={(e) =>
+                handleProjectDataChange("execution", e.target.value)
+              }
             ></textarea>
           </fieldset>
           <div className="text-center">

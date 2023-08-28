@@ -11,34 +11,71 @@ datasource db {
 }
 
 model Category {
+  id      Int       @id @default(autoincrement())
+  name    String
+  project Project[]
+}
+
+model BlogCategory {
   id   Int    @id @default(autoincrement())
   name String
+  blog Blog[]
+}
+
+model Blog {
+  id          Int            @id @default(autoincrement())
+  category    BlogCategory[]
+  blogRound   String
+  description String
+  title       String
+  createdAt   DateTime       @default(now())
 }
 
 model Project {
-  id               Int    @id @default(autoincrement())
-  title            String @unique
-  category         String
+  id               Int             @id @default(autoincrement())
+  title            String
+  category         Category[]
   description      String
   startAmount      String
   endAmount        String
   purpose          String
   execution        String
   paymentStructure String
+  grantStatus      FundingStatus[]
+  owner            Grantee         @relation(fields: [projectId], references: [id])
+  projectId        Int
+  statusId         String
+  completed        Boolean         @default(false)
+  submitted        DateTime        @default(now())
+
+  @@unique([projectId, title])
 }
 
 model Grantee {
-  id    Int    @id @default(autoincrement())
-  name  String
-  email String @unique
-  phone String @unique
-  about String
-  links String
+  id         Int       @id @default(autoincrement())
+  name       String
+  email      String    @unique
+  phone      String    @unique
+  photo      String
+  about      String
+  twitter    String    @default("#")
+  github     String    @default("#")
+  website    String    @default("#")
+  linkedin   String    @default("#")
+  projects   Project[]
+  joinedDate DateTime  @default(now())
+}
+
+model FAQ {
+  id          Int    @id @default(autoincrement())
+  title       String
+  description String
 }
 
 model FundingStatus {
-  id    Int    @id @default(autoincrement())
-  title String @unique
+  id      Int       @id @default(autoincrement())
+  title   String    @unique
+  project Project[]
 }
 
 model HeaderMenu {

@@ -1,9 +1,22 @@
 // Use this import statement after completing this route
-import { prisma } from "../../../lib/prisma";
+// import { prisma } from "../../../lib/prisma";
+
+import { PrismaClient } from "@prisma/client";
+const prisma = new PrismaClient();
+
+import { nanoid } from "nanoid";
+
+const statusId = nanoid();
 
 // fetch all projects
 export const GET = async () => {
-  const project = await prisma.project.findMany();
+  const project = await prisma.project.findMany({
+    include: {
+      category: true,
+      owner: true,
+      grantStatus: true,
+    },
+  });
 
   if (project.length === 0) {
     return new Response(JSON.stringify({ message: "No projects found!" }));
@@ -23,6 +36,7 @@ export const POST = async (req) => {
     purpose,
     execution,
     paymentStructure,
+    projectId,
   } = await req.json();
 
   const checkProjectTitleExists = await prisma.project.findFirst({
@@ -34,13 +48,23 @@ export const POST = async (req) => {
       const newProject = await prisma.project.create({
         data: {
           title,
-          category,
           description,
           startAmount,
           endAmount,
           purpose,
           execution,
           paymentStructure,
+          statusId,
+          category: {
+            connect: {
+              id: category,
+            },
+          },
+          owner: {
+            connect: {
+              id: projectId,
+            },
+          },
         },
       });
 
@@ -51,7 +75,7 @@ export const POST = async (req) => {
 
     return new Response(
       JSON.stringify({
-        message:
+        error:
           "Project already exists. If you think this is an error, please contact JuGrants team!",
       }),
       { status: 400 }
