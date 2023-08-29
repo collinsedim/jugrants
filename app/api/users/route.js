@@ -1,10 +1,10 @@
 import path from "path";
 import fs from "fs/promises";
 
-import { PrismaClient } from "@prisma/client";
-const prisma = new PrismaClient();
+// import { PrismaClient } from "@prisma/client";
+// const prisma = new PrismaClient();
 
-// import { prisma } from "../../../lib/prisma";
+import { prisma } from "../../../lib/prisma";
 
 export const GET = async () => {
   try {
@@ -88,11 +88,11 @@ export const POST = async (req) => {
     where: { name: name },
   });
 
-  if (checkGranteeExist)
-    return new Response(
-      JSON.stringify({ message: "Grantee already exists." }),
-      { status: 400 }
-    );
+  // if (checkGranteeExist)
+  //   return new Response(
+  //     JSON.stringify({ message: "Grantee already exists." }),
+  //     { status: 400 }
+  //   );
 
   try {
     if (!checkGranteeExist) {

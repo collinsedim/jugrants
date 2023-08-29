@@ -40,7 +40,7 @@ model Project {
   endAmount        String
   purpose          String
   execution        String
-  paymentStructure String
+  paymentStructure String?
   grantStatus      FundingStatus[]
   owner            Grantee         @relation(fields: [projectId], references: [id])
   projectId        Int
@@ -74,7 +74,7 @@ model FAQ {
 
 model FundingStatus {
   id      Int       @id @default(autoincrement())
-  title   String    @unique
+  title   String    @unique @default("Open")
   project Project[]
 }
 

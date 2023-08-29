@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import Accordion from "../components/Accordion";
 import Image from "next/image";
 
-import { projectCategories } from "../components/data/data";
+// import { projectCategories } from "../components/data/data";
 
 const grantCriteria = [
   {
@@ -37,6 +37,26 @@ const grantCriteria = [
 ];
 
 const GrantApplication = () => {
+  const [expanded, setExpanded] = useState();
+  const [loading, setLoading] = useState(false);
+  const [selectedImage, setSelectedImage] = useState(null);
+  const [projectCategories, setProjectCategories] = useState([]);
+
+  const fetchCategories = async () => {
+    const res = await fetch("/api/categories", {
+      method: "GET",
+    });
+    const categories = await res.json();
+    setProjectCategories(categories);
+    if (categories.length <= 0) {
+      setLoading(true);
+    }
+  };
+
+  useEffect(() => {
+    fetchCategories();
+  }, []);
+
   const [granteeData, setGranteeData] = useState({
     name: "",
     email: "",
@@ -52,7 +72,7 @@ const GrantApplication = () => {
   const [projectData, setProjectData] = useState({
     title: "",
     description: "",
-    category: "",
+    category: 0,
     purpose: "",
     execution: "",
     startAmount: "",
@@ -82,14 +102,10 @@ const GrantApplication = () => {
     endAmount,
   } = projectData;
 
-  const [expanded, setExpanded] = useState();
-  const [submitting, setSubmitting] = useState(false);
-  const [selectedImage, setSelectedImage] = useState(null);
-
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    setSubmitting(true);
+    setLoading(true);
 
     // Create FormData for image upload
     const granteeFormData = new FormData();
@@ -111,13 +127,16 @@ const GrantApplication = () => {
 
     // Assuming the grantee API response provides an 'id'
     const granteeId = await granteeResponse.json(); // Adjust based on your API response
-    console.log(granteeData);
+    // console.log(granteeId);
+    // console.log(granteeData);
+    // console.log(projectData);
     // return;
+
     // Prepare project data for submission
     const projectRequestBody = {
       title,
       description,
-      category,
+      category: Number(category),
       purpose,
       execution,
       startAmount,
@@ -134,10 +153,10 @@ const GrantApplication = () => {
       body: JSON.stringify(projectRequestBody),
     });
 
-    console.log("Grantee Response:", granteeResponse);
-    console.log("Project Response:", projectResponse);
+    // console.log("Grantee Response:", granteeResponse);
+    // console.log("Project Response:", projectResponse);
 
-    setSubmitting(false);
+    setLoading(false);
   };
 
   const handleGranteeDataChange = (field, value) => {
@@ -375,7 +394,7 @@ const GrantApplication = () => {
             >
               <option className="text-gray-400">select category</option>
               {projectCategories.map((category) => (
-                <option value={category.name} key={category.name}>
+                <option value={category.id} key={category.id}>
                   {category.name}
                 </option>
               ))}
@@ -447,11 +466,11 @@ const GrantApplication = () => {
           </fieldset>
           <div className="text-center">
             <button
-              disabled={submitting}
-              className="bg-bgButton rounded-md px-7 py-2 font-bold text-white hover:scale-105 duration-150"
+              disabled={loading}
+              className="bg-bgButton rounded-md px-7 py-2 font-bold text-white hover:scale-105 duration-150 disabled:bg-gray-500 disabled:cursor-not-allowed disabled:hover:scale-100"
               type="submit"
             >
-              {!submitting ? "Apply" : "Submitting..."}
+              {!loading ? "Apply" : "Processing..."}
             </button>
           </div>
         </form>

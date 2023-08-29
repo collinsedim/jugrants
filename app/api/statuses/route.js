@@ -7,6 +7,20 @@ const prisma = new PrismaClient();
 
 // fetch all status
 export const GET = async () => {
+  // const { status } = req.json();
+
+  // // get funding status and append to project creation
+  // if (status) {
+  //   const fundingStatus = await prisma.fundingStatus.findFirst({
+  //     where: { title: "Open" },
+  //   });
+
+  //   const statusResponse = fundingStatus.id;
+
+  //   return new Response(JSON.stringify(statusResponse), { status: 201 });
+  // }
+  // // end get funding status and append to project creation
+
   const projectStatus = await prisma.fundingStatus.findMany();
 
   if (projectStatus.length === 0) {

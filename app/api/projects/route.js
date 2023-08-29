@@ -43,6 +43,8 @@ export const POST = async (req) => {
     where: { title: title },
   });
 
+  // console.log("Category Data", category);
+
   try {
     if (!checkProjectTitleExists) {
       const newProject = await prisma.project.create({
