@@ -1,8 +1,8 @@
 // Use this import statement after completing this route
-// import { prisma } from "../../../lib/prisma";
+import { prisma } from "../../../lib/prisma";
 
-import { PrismaClient } from "@prisma/client";
-const prisma = new PrismaClient();
+// import { PrismaClient } from "@prisma/client";
+// const prisma = new PrismaClient();
 
 import { nanoid } from "nanoid";
 
@@ -67,6 +67,11 @@ export const POST = async (req) => {
               id: projectId,
             },
           },
+          grantStatus: {
+            connect: {
+              title: "Open" || "open",
+            },
+          },
         },
       });
 
@@ -87,24 +92,36 @@ export const POST = async (req) => {
   }
 };
 
-// Delete All projects
+// Delete All projects,
 // export const DELETE = async (req) => {
-//   const checkIfProjectsExist = await prisma.project.findMany({});
+//   const getAllProjects = await prisma.project.findMany({});
 
-//   if (checkIfProjectsExist.length !== 0) {
-//     await prisma.project.deleteMany({});
+//   try {
+//     // Delete all projects if any exists
+//     if (getAllProjects.length !== 0) {
+//       await prisma.project.deleteMany({});
 
-//     return new Response(JSON.stringify({ message: "All projects deleted!" }), {
-//       status: 200,
+//       return new Response(
+//         JSON.stringify({ message: "All projects deleted!" }),
+//         {
+//           status: 200,
+//         }
+//       );
+//     }
+
+//     return new Response(JSON.stringify({ error: "No projects to delete" }), {
+//       status: 404,
+//     });
+//   } catch (error) {
+//     console.log("Project delete error:", error);
+
+//     return new Response(JSON.stringify({ message: "No projects to delete" }), {
+//       status: 404,
 //     });
 //   }
-
-//   return new Response(JSON.stringify({ message: "No projects to delete" }), {
-//     status: 404,
-//   });
 // };
 
-// Delete single Project
+// Delete single projects
 export const DELETE = async (req) => {
   const { id } = await req.json();
 
@@ -114,22 +131,33 @@ export const DELETE = async (req) => {
     },
   });
 
-  if (!dbId) {
-    return new Response(JSON.stringify({ message: "Project does not exist" }), {
-      status: 404,
+  try {
+    if (!dbId) {
+      return new Response(JSON.stringify({ error: "Project does not exist" }), {
+        status: 404,
+      });
+    }
+
+    await prisma.project.delete({
+      where: { id: id },
+      select: {
+        title: true,
+      },
     });
+
+    return new Response(JSON.stringify({ message: "project deleted" }), {
+      status: 201,
+    });
+  } catch (error) {
+    console.log("An error occured deleting this project", error);
+
+    return new Response(
+      JSON.stringify({ error: "An error occured deleting this project" }),
+      {
+        status: 500,
+      }
+    );
   }
-
-  await prisma.project.delete({
-    where: { id: id },
-    select: {
-      title: true,
-    },
-  });
-
-  return new Response(JSON.stringify({ message: "project deleted" }), {
-    status: 201,
-  });
 };
 
 // update project name
