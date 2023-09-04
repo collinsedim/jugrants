@@ -1,6 +1,6 @@
 "use client";
 import "./globals.css";
-import { Inter, Libre_Baskerville } from "next/font/google";
+import { Libre_Baskerville } from "next/font/google";
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";

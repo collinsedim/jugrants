@@ -74,7 +74,7 @@ model FAQ {
 
 model FundingStatus {
   id      Int       @id @default(autoincrement())
-  title   String    @unique @default("Open")
+  title   String    @unique
   project Project[]
 }
 
@@ -82,4 +82,10 @@ model HeaderMenu {
   id    Int    @id @default(autoincrement())
   title String
   link  String
+}
+
+model ApprovalCriteria {
+  id          Int    @id @default(autoincrement())
+  title       String
+  description String
 }

@@ -553,6 +553,10 @@ const headerMenu = [
     title: "FAQ",
     link: "/faq",
   },
+  {
+    title: "Approval Status",
+    link: "/check-grant-status",
+  },
 ];
 
 const footerMenu = [

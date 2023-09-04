@@ -6,7 +6,7 @@ import fs from "fs/promises";
 
 import { prisma } from "../../../lib/prisma";
 
-export const GET = async () => {
+export const GET = async (req) => {
   try {
     const grantee = await prisma.grantee.findMany({
       include: {
@@ -68,7 +68,10 @@ export const POST = async (req) => {
   await fs.writeFile(filePath, data);
 
   // format the image url so it can be used as src in html image element
-  const imgURL = filePath.replace(process.cwd(), "").replaceAll("\\", "/");
+  const imgURL = filePath
+    .replace(process.cwd(), "")
+    .replaceAll("\\", "/")
+    .replace("/public", "");
 
   // end receive image file and save to grantee-uploads folder
 
@@ -88,26 +91,18 @@ export const POST = async (req) => {
     where: { name: name },
   });
 
-  // if (checkGranteeExist)
-  //   return new Response(
-  //     JSON.stringify({ message: "Grantee already exists." }),
-  //     { status: 400 }
-  //   );
-
   try {
-    if (!checkGranteeExist) {
-      const newGrantee = await prisma.grantee.create({
-        data: granteeData,
-      });
-
-      return new Response(JSON.stringify(newGrantee.id), {
-        status: 201,
-      });
-    }
-
-    return new Response(JSON.stringify({ error: "Something went wrong!" }), {
-      status: 400,
+    const newGrantee = await prisma.grantee.create({
+      data: granteeData,
     });
+
+    return new Response(JSON.stringify(newGrantee.id), {
+      status: 201,
+    });
+
+    // return new Response(JSON.stringify({ error: "Something went wrong!" }), {
+    //   status: 400,
+    // });
   } catch (error) {
     // console.log("an error occured", error);
     return new Response(
